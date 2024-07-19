@@ -1,0 +1,6 @@
+<resources>
+    <string name="an_error_occurred">Se ha producido un error</string>
+    <string name="retry">Reintentar</string>
+    <string name="confirm">Confirme</string>
+    <string name="dismiss">Desestimar</string>
+</resources>

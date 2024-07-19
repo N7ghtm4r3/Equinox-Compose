@@ -40,6 +40,7 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
                 implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
                 implementation("com.github.N7ghtm4r3:Equinox:1.0.2")
@@ -63,6 +64,10 @@ android {
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
+    }
 }
 
 afterEvaluate {
@@ -76,4 +81,9 @@ afterEvaluate {
             }
         }
     }
+}
+
+compose.resources {
+    publicResClass = true
+    generateResClass = always
 }

@@ -1,0 +1,6 @@
+<resources>
+    <string name="an_error_occurred">Si è verificato un errore</string>
+    <string name="retry">Riprova</string>
+    <string name="confirm">Conferma</string>
+    <string name="dismiss">Annulla</string>
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="an_error_occurred">Ett fel inträffade</string>
+    <string name="retry">Försök igen</string>
+    <string name="confirm">Bekräfta</string>
+    <string name="dismiss">Avvisa</string>
+</resources>

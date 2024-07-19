@@ -1,0 +1,6 @@
+<resources>
+    <string name="an_error_occurred">Tapahtui virhe</string>
+    <string name="retry">Uudelleenyritys</string>
+    <string name="confirm">Vahvista</string>
+    <string name="dismiss">Dismiss</string>
+</resources>

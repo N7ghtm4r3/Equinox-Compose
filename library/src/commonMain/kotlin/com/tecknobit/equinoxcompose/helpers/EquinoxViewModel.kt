@@ -1,4 +1,4 @@
-package com.tecknobit.equinoxcompose
+package com.tecknobit.equinoxcompose.helpers
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable

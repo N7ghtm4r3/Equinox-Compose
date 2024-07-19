@@ -1,0 +1,6 @@
+<resources>
+    <string name="an_error_occurred">发生错误</string>
+    <string name="retry">重试</string>
+    <string name="confirm">确认</string>
+    <string name="dismiss">解散</string>
+</resources>

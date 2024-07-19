@@ -1,0 +1,6 @@
+<resources>
+    <string name="an_error_occurred">Vyskytla sa chyba</string>
+    <string name="retry">Opakovanie</string>
+    <string name="confirm">Potvrďte</string>
+    <string name="dismiss">Odmietnuť</string>
+</resources>
