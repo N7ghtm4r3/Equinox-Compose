@@ -25,17 +25,6 @@ kotlin {
         }
     }
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "Equinox-Compose"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         all {
             languageSettings {
@@ -47,6 +36,9 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
+                implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
+                implementation("com.github.N7ghtm4r3:Equinox:1.0.2")
             }
         }
         val jvmMain by getting {
@@ -55,17 +47,6 @@ kotlin {
             }
         }
         val androidMain by getting {
-            dependencies {
-            }
-        }
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
             dependencies {
             }
         }
