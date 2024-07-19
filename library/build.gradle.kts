@@ -8,7 +8,11 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose.compiler)
+    id("maven-publish")
 }
+
+group = "com.tecknobit"
+version = "1.0.0"
 
 kotlin {
     jvm {
@@ -58,5 +62,18 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.tecknobit.equinoxcompose"
+                artifactId = "Equinox-Compose"
+                version = "1.0.0"
+                from(components["kotlin"])
+            }
+        }
     }
 }

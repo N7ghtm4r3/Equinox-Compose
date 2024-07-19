@@ -1,6 +1,8 @@
 package com.tecknobit.equinoxcompose
 
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import com.tecknobit.apimanager.annotations.Structure
 import com.tecknobit.apimanager.formatters.JsonHelper
@@ -22,7 +24,7 @@ import kotlinx.coroutines.launch
  * @see FetcherManagerWrapper
  */
 @Structure
-open class EquinoxViewModel(
+abstract class EquinoxViewModel(
     protected val snackbarHostState: SnackbarHostState? = null
 ) : ViewModel(), FetcherManagerWrapper {
 
@@ -103,6 +105,23 @@ open class EquinoxViewModel(
      */
     override fun suspendRefresher() {
         fetcherManager.suspend()
+    }
+
+    /**
+     * Function to suspend or restart the current refresher when an element is displayed or is hidden.
+     * This function must be invoked attaching the flag used to control the visibility of that element
+     *
+     * @param elementVisible: the flag [MutableState] used to display or hide an element on the screen such [AlertDialog]
+     * or [ModalBottomSheet]
+     */
+    @Composable
+    fun SuspendUntilElementOnScreen(
+        elementVisible: MutableState<Boolean>
+    ) {
+        if(elementVisible.value)
+            suspendRefresher()
+        else
+            restartRefresher()
     }
 
     /**
