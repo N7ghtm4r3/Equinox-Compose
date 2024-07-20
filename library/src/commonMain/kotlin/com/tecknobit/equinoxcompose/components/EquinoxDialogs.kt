@@ -78,9 +78,9 @@ fun EquinoxAlertDialog(
     title: String,
     text: String,
     dismissAction: () -> Unit = onDismissAction,
-    dismissText: String = stringResource(Res.string.dismiss),
+    dismissText: String,
     confirmAction: () -> Unit,
-    confirmText: String = stringResource(Res.string.confirm)
+    confirmText: String
 ) {
     EquinoxAlertDialog(
         show = show,
@@ -159,9 +159,9 @@ fun EquinoxAlertDialog(
     title: String,
     text: @Composable () -> Unit,
     dismissAction: () -> Unit = onDismissAction,
-    dismissText: String = stringResource(Res.string.dismiss),
+    dismissText: String,
     confirmAction: () -> Unit,
-    confirmText: String = stringResource(Res.string.confirm)
+    confirmText: String
 ) {
     if(show.value) {
         AlertDialog(

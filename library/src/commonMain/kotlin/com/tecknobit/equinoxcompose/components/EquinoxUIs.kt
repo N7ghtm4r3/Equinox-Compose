@@ -77,7 +77,11 @@ fun EmptyListUI(
 /**
  * Function to display a layout when an error occurred
  *
+ * @param errorIcon: the error icon used, as default is used the **Icons.Default.Error**
+ * @param errorColor: the error color used, as default is used the **MaterialTheme.colorScheme.errorContainer**
+ * @param errorMessage: the error that occurred or to indicate a generic error
  * @param retryAction: the retry action to execute
+ * @param retryText: the retry message
  */
 @Composable
 fun ErrorUI(
@@ -99,15 +103,19 @@ fun ErrorUI(
 /**
  * Function to display a layout when an error occurred
  *
+ * @param errorIcon: the error icon used, as default is used the **Icons.Default.Error**
+ * @param errorColor: the error color used, as default is used the **MaterialTheme.colorScheme.errorContainer**
+ * @param errorMessage: the error that occurred or to indicate a generic error
  * @param retryAction: the retry action to execute
+ * @param retryText: the retry message
  */
 @Composable
 fun ErrorUI(
     errorIcon: ImageVector = Icons.Default.Error,
     errorColor: Color = MaterialTheme.colorScheme.errorContainer,
-    errorMessage: String = stringResource(Res.string.an_error_occurred),
+    errorMessage: String,
     retryAction: @Composable (() -> Unit)? = null,
-    retryText: String = stringResource(Res.string.retry)
+    retryText: String
 ) {
     Column (
         modifier = Modifier
