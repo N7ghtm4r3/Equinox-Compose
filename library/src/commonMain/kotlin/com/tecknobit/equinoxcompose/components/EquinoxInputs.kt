@@ -1,6 +1,7 @@
 package com.tecknobit.equinoxcompose.components
 
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -22,7 +23,8 @@ import org.jetbrains.compose.resources.stringResource
  * @param modifier: the modifier of the text field
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
- * @param isTextArea: whether the text field is a text area or simple text field
+ * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
+ * otherwise simple text field
  * @param validator: the function to invoke to validate the input
  * @param isError: whether the text field is in an error state
  * @param errorText: the error text to display if [isError] is true
@@ -30,13 +32,16 @@ import org.jetbrains.compose.resources.stringResource
  * updated text comes as a parameter of the callback
  * @param label: the label displayed in the text field
  * @param keyboardOptions software keyboard options that contains configuration
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback
+ * is called. Note that this IME action may be different from what you specified in
+ * [KeyboardOptions.imeAction]
  */
 @Composable
 fun EquinoxTextField(
     modifier: Modifier = Modifier,
     width: Dp = 280.dp,
     value: MutableState<String>,
-    isTextArea: Boolean = false,
+    maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     errorText: StringResource? = null,
@@ -46,13 +51,14 @@ fun EquinoxTextField(
         value.value = it
     },
     label: StringResource,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     EquinoxTextField(
         modifier = modifier,
         width = width,
         value = value,
-        isTextArea = isTextArea,
+        maxLines = maxLines,
         validator = validator,
         isError = isError,
         errorText = if(errorText != null)
@@ -61,7 +67,8 @@ fun EquinoxTextField(
             null,
         onValueChange = onValueChange,
         label = stringResource(label),
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions
     )
 }
 
@@ -71,7 +78,8 @@ fun EquinoxTextField(
  * @param modifier: the modifier of the text field
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
- * @param isTextArea: whether the text field is a text area or simple text field
+ * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
+ * otherwise simple text field
  * @param validator: the function to invoke to validate the input
  * @param isError: whether the text field is in an error state
  * @param errorText: the error text to display if [isError] is true
@@ -79,13 +87,16 @@ fun EquinoxTextField(
  * updated text comes as a parameter of the callback
  * @param label: the label displayed in the text field
  * @param keyboardOptions software keyboard options that contains configuration
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback
+ * is called. Note that this IME action may be different from what you specified in
+ * [KeyboardOptions.imeAction]
  */
 @Composable
 fun EquinoxTextField(
     modifier: Modifier = Modifier,
     width: Dp = 280.dp,
     value: MutableState<String>,
-    isTextArea: Boolean = false,
+    maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     errorText: String? = null,
@@ -95,7 +106,8 @@ fun EquinoxTextField(
         value.value = it
     },
     label: String,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     TextField(
         modifier = modifier
@@ -107,8 +119,7 @@ fun EquinoxTextField(
                 text = label
             )
         },
-        singleLine = !isTextArea,
-        maxLines = 25,
+        maxLines = maxLines,
         keyboardOptions = keyboardOptions,
         isError = isError.value,
         supportingText = if (isError.value && errorText != null) {
@@ -118,7 +129,8 @@ fun EquinoxTextField(
                 )
             }
         } else
-            null
+            null,
+        keyboardActions = keyboardActions
     )
 }
 
@@ -129,7 +141,8 @@ fun EquinoxTextField(
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
  * @param mustBeInLowerCase: whether the input must be in lower case format
- * @param isTextArea: whether the text field is a text area or simple text field
+ * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
+ * otherwise simple text field
  * @param validator: the function to invoke to validate the input
  * @param isError: whether the text field is in an error state
  * @param errorText: the error text to display if [isError] is true
@@ -139,6 +152,9 @@ fun EquinoxTextField(
  * @param trailingIcon: the optional trailing icon to be displayed at the end of the text field container
  * @param visualTransformation: transforms the visual representation of the input [value]
  * @param keyboardOptions software keyboard options that contains configuration
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback
+ * is called. Note that this IME action may be different from what you specified in
+ * [KeyboardOptions.imeAction]
  */
 @Composable
 fun EquinoxOutlinedTextField(
@@ -146,7 +162,7 @@ fun EquinoxOutlinedTextField(
     width: Dp = 300.dp,
     value: MutableState<String>,
     mustBeInLowerCase: Boolean = false,
-    isTextArea: Boolean = false,
+    maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     errorText: StringResource? = null,
@@ -170,14 +186,15 @@ fun EquinoxOutlinedTextField(
         }
     },
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     EquinoxOutlinedTextField(
         modifier = modifier,
         width = width,
         value = value,
         mustBeInLowerCase = mustBeInLowerCase,
-        isTextArea = isTextArea,
+        maxLines = maxLines,
         validator = validator,
         isError = isError,
         errorText = if (errorText != null)
@@ -188,7 +205,8 @@ fun EquinoxOutlinedTextField(
         label = stringResource(label),
         trailingIcon = trailingIcon,
         visualTransformation = visualTransformation,
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions
     )
 }
 
@@ -199,7 +217,8 @@ fun EquinoxOutlinedTextField(
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
  * @param mustBeInLowerCase: whether the input must be in lower case format
- * @param isTextArea: whether the text field is a text area or simple text field
+ * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
+ * otherwise simple text field
  * @param validator: the function to invoke to validate the input
  * @param isError: whether the text field is in an error state
  * @param errorText: the error text to display if [isError] is true
@@ -209,6 +228,9 @@ fun EquinoxOutlinedTextField(
  * @param trailingIcon: the optional trailing icon to be displayed at the end of the text field container
  * @param visualTransformation: transforms the visual representation of the input [value]
  * @param keyboardOptions software keyboard options that contains configuration
+ * @param keyboardActions when the input service emits an IME action, the corresponding callback
+ * is called. Note that this IME action may be different from what you specified in
+ * [KeyboardOptions.imeAction]
  */
 @Composable
 fun EquinoxOutlinedTextField(
@@ -216,7 +238,7 @@ fun EquinoxOutlinedTextField(
     width: Dp = 300.dp,
     value: MutableState<String>,
     mustBeInLowerCase: Boolean = false,
-    isTextArea: Boolean = false,
+    maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     errorText: String? = null,
@@ -240,7 +262,8 @@ fun EquinoxOutlinedTextField(
         }
     },
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     OutlinedTextField(
         modifier = modifier
@@ -253,10 +276,8 @@ fun EquinoxOutlinedTextField(
             )
         },
         trailingIcon = trailingIcon,
-        singleLine = !isTextArea,
-        maxLines = 25,
-        visualTransformation = visualTransformation,
-        keyboardOptions = keyboardOptions,
+        singleLine = maxLines == 1,
+        maxLines = maxLines,
         isError = isError.value,
         supportingText = if (isError.value && errorText != null) {
             {
@@ -265,6 +286,9 @@ fun EquinoxOutlinedTextField(
                 )
             }
         } else
-            null
+            null,
+        visualTransformation = visualTransformation,
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
     )
 }

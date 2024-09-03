@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.tecknobit.library.generated.resources.Res
 import com.tecknobit.library.generated.resources.an_error_occurred
@@ -27,16 +28,29 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * Function to display a layout when a list of values is empty
  *
+ * @param containerModifier: the modifier to apply to the container column
+ * @param imageModifier: the modifier to apply to the image icon
+ * @param textStyle: the style to apply to the text
  * @param icon: the icon to display
+ * @param themeColor: the color to use into the composable
  * @param subText: the description of the layout
  */
 @Composable
+@NonRestartableComposable
 fun EmptyListUI(
+    containerModifier: Modifier = Modifier,
+    imageModifier: Modifier = Modifier,
+    textStyle: TextStyle = TextStyle.Default,
     icon: ImageVector,
+    themeColor: Color = MaterialTheme.colorScheme.primary,
     subText: StringResource
 ) {
     EmptyListUI(
+        textStyle = textStyle,
+        containerModifier = containerModifier,
+        imageModifier = imageModifier,
         icon = icon,
+        themeColor = themeColor,
         subText = stringResource(subText)
     )
 }
@@ -44,32 +58,42 @@ fun EmptyListUI(
 /**
  * Function to display a layout when a list of values is empty
  *
+ * @param containerModifier: the modifier to apply to the container column
+ * @param imageModifier: the modifier to apply to the image icon
+ * @param textStyle: the style to apply to the text
  * @param icon: the icon to display
+ * @param themeColor: the color to use into the composable
  * @param subText: the description of the layout
  */
 @Composable
+@NonRestartableComposable
 fun EmptyListUI(
+    containerModifier: Modifier = Modifier,
+    imageModifier: Modifier = Modifier,
+    textStyle: TextStyle = TextStyle.Default,
     icon: ImageVector,
+    themeColor: Color = MaterialTheme.colorScheme.primary,
     subText: String
 ) {
     Column (
-        modifier = Modifier
+        modifier = containerModifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            modifier = Modifier
+            modifier = imageModifier
                 .size(100.dp),
             imageVector = icon,
             contentDescription = null,
             colorFilter = ColorFilter.tint(
-                color = MaterialTheme.colorScheme.primary
+                color = themeColor
             )
         )
         Text(
+            style = textStyle,
             text = subText,
-            color = MaterialTheme.colorScheme.primary
+            color = themeColor
         )
     }
 }
@@ -77,6 +101,9 @@ fun EmptyListUI(
 /**
  * Function to display a layout when an error occurred
  *
+ * @param containerModifier: the modifier to apply to the container column
+ * @param imageModifier: the modifier to apply to the image icon
+ * @param textStyle: the style to apply to the text
  * @param errorIcon: the error icon used, as default is used the **Icons.Default.Error**
  * @param errorColor: the error color used, as default is used the **MaterialTheme.colorScheme.errorContainer**
  * @param errorMessage: the error that occurred or to indicate a generic error
@@ -84,7 +111,11 @@ fun EmptyListUI(
  * @param retryText: the retry message
  */
 @Composable
+@NonRestartableComposable
 fun ErrorUI(
+    containerModifier: Modifier = Modifier,
+    imageModifier: Modifier = Modifier,
+    textStyle: TextStyle = TextStyle.Default,
     errorIcon: ImageVector = Icons.Default.Error,
     errorColor: Color = MaterialTheme.colorScheme.errorContainer,
     errorMessage: StringResource = Res.string.an_error_occurred,
@@ -92,6 +123,9 @@ fun ErrorUI(
     retryText: StringResource = Res.string.retry
 ) {
     ErrorUI(
+        containerModifier = containerModifier,
+        imageModifier = imageModifier,
+        textStyle = textStyle,
         errorIcon = errorIcon,
         errorColor = errorColor,
         errorMessage = stringResource(errorMessage),
@@ -103,6 +137,9 @@ fun ErrorUI(
 /**
  * Function to display a layout when an error occurred
  *
+ * @param containerModifier: the modifier to apply to the container column
+ * @param imageModifier: the modifier to apply to the image icon
+ * @param textStyle: the style to apply to the text
  * @param errorIcon: the error icon used, as default is used the **Icons.Default.Error**
  * @param errorColor: the error color used, as default is used the **MaterialTheme.colorScheme.errorContainer**
  * @param errorMessage: the error that occurred or to indicate a generic error
@@ -110,22 +147,26 @@ fun ErrorUI(
  * @param retryText: the retry message
  */
 @Composable
+@NonRestartableComposable
 fun ErrorUI(
+    containerModifier: Modifier = Modifier,
+    imageModifier: Modifier = Modifier,
+    textStyle: TextStyle = TextStyle.Default,
     errorIcon: ImageVector = Icons.Default.Error,
     errorColor: Color = MaterialTheme.colorScheme.errorContainer,
     errorMessage: String,
     retryAction: @Composable (() -> Unit)? = null,
-    retryText: String
+    retryText: String? = null
 ) {
     Column (
-        modifier = Modifier
+        modifier = containerModifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            modifier = Modifier
+            modifier = imageModifier
                 .size(100.dp),
             imageVector = errorIcon,
             contentDescription = null,
@@ -134,10 +175,11 @@ fun ErrorUI(
             )
         )
         Text(
+            style = textStyle,
             text = errorMessage,
             color = errorColor
         )
-        if(retryAction != null) {
+        if(retryAction != null && retryText != null) {
             var retryActionStart by remember { mutableStateOf(false) }
             TextButton(
                 onClick = { retryActionStart = true }

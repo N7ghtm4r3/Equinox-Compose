@@ -132,8 +132,21 @@ abstract class EquinoxViewModel(
     protected fun showSnackbarMessage(
         helper: JsonHelper
     ) {
+        showSnackbarMessage(
+            message = helper.getString(RESPONSE_MESSAGE_KEY)
+        )
+    }
+
+    /**
+     * Function to display a response message with a snackbar
+     *
+     * @param message: the message to display
+     */
+    protected fun showSnackbarMessage(
+        message: String
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
-            snackbarHostState?.showSnackbar(helper.getString(RESPONSE_MESSAGE_KEY))
+            snackbarHostState?.showSnackbar(message)
         }
     }
 

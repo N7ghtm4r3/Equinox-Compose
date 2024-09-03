@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import com.tecknobit.library.generated.resources.Res
@@ -17,6 +18,7 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * Function to display a custom [AlertDialog]
  *
+ * @param modifier: the modifier to apply to the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param onDismissAction: the action to execute when the alert dialog has been dismissed
@@ -29,6 +31,7 @@ import org.jetbrains.compose.resources.stringResource
  */
 @Composable
 fun EquinoxAlertDialog(
+    modifier: Modifier = Modifier,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     onDismissAction: () -> Unit = { show.value = false },
@@ -40,6 +43,7 @@ fun EquinoxAlertDialog(
     confirmText: StringResource = Res.string.confirm
 ) {
     EquinoxAlertDialog(
+        modifier = modifier,
         show = show,
         icon = icon,
         onDismissAction = onDismissAction,
@@ -60,6 +64,7 @@ fun EquinoxAlertDialog(
 /**
  * Function to display a custom [AlertDialog]
  *
+ * @param modifier: the modifier to apply to the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param onDismissAction: the action to execute when the alert dialog has been dismissed
@@ -72,6 +77,7 @@ fun EquinoxAlertDialog(
  */
 @Composable
 fun EquinoxAlertDialog(
+    modifier: Modifier = Modifier,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     onDismissAction: () -> Unit = { show.value = false },
@@ -83,6 +89,7 @@ fun EquinoxAlertDialog(
     confirmText: String
 ) {
     EquinoxAlertDialog(
+        modifier = modifier,
         show = show,
         icon = icon,
         onDismissAction = onDismissAction,
@@ -103,6 +110,7 @@ fun EquinoxAlertDialog(
 /**
  * Function to display a custom [AlertDialog]
  *
+ * @param modifier: the modifier to apply to the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param onDismissAction: the action to execute when the alert dialog has been dismissed
@@ -115,6 +123,7 @@ fun EquinoxAlertDialog(
  */
 @Composable
 fun EquinoxAlertDialog(
+    modifier: Modifier = Modifier,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     onDismissAction: () -> Unit = { show.value = false },
@@ -126,6 +135,7 @@ fun EquinoxAlertDialog(
     confirmText: StringResource = Res.string.confirm
 ) {
     EquinoxAlertDialog(
+        modifier = modifier,
         show = show,
         icon = icon,
         onDismissAction = onDismissAction,
@@ -141,6 +151,7 @@ fun EquinoxAlertDialog(
 /**
  * Function to display a custom [AlertDialog]
  *
+ * @param modifier: the modifier to apply to the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param onDismissAction: the action to execute when the alert dialog has been dismissed
@@ -153,6 +164,7 @@ fun EquinoxAlertDialog(
  */
 @Composable
 fun EquinoxAlertDialog(
+    modifier: Modifier = Modifier,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     onDismissAction: () -> Unit = { show.value = false },
@@ -165,6 +177,7 @@ fun EquinoxAlertDialog(
 ) {
     if(show.value) {
         AlertDialog(
+            modifier = modifier,
             icon = {
                 if(icon != null) {
                     Icon(
