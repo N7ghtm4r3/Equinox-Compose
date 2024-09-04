@@ -10,9 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
-import com.tecknobit.library.generated.resources.Res
-import com.tecknobit.library.generated.resources.confirm
-import com.tecknobit.library.generated.resources.dismiss
+import com.tecknobit.equinoxcompose.resources.Res
+import com.tecknobit.equinoxcompose.resources.confirm
+import com.tecknobit.equinoxcompose.resources.dismiss
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 

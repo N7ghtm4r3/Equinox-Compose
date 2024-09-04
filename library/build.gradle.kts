@@ -84,5 +84,6 @@ afterEvaluate {
 
 compose.resources {
     publicResClass = true
+    packageOfResClass = "com.tecknobit.equinoxcompose.resources"
     generateResClass = always
 }

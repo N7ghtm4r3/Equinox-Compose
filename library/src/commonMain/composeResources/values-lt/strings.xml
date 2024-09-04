@@ -4,4 +4,5 @@
     <string name="confirm">Patvirtinkite</string>
     <string name="dismiss">Atmesti</string>
     <string name="server_currently_offline">Serveris šiuo metu neprisijungęs</string>
+    <string name="no_internet_connection">Nėra interneto ryšio</string>
 </resources>

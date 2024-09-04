@@ -19,9 +19,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.tecknobit.library.generated.resources.Res
-import com.tecknobit.library.generated.resources.an_error_occurred
-import com.tecknobit.library.generated.resources.retry
+import com.tecknobit.equinoxcompose.resources.Res
+import com.tecknobit.equinoxcompose.resources.an_error_occurred
+import com.tecknobit.equinoxcompose.resources.retry
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
