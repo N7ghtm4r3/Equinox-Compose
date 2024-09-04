@@ -6,8 +6,16 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.InetAddress
 
+/**
+ * *GOOGLE_DNS* -> the dns value used to check whether the internet connection is on or off on a desktop device
+ */
 private const val GOOGLE_DNS = "8.8.8.8"
 
+/**
+ * Function to check the internet connection availability
+ *
+ * @param noInternetConnectionState: state to manage the no internet connection scenario
+ */
 actual fun checkInternetConnection(
     noInternetConnectionState: MutableState<Boolean>,
 ) {

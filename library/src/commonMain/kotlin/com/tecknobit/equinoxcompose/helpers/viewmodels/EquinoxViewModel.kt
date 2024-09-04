@@ -17,11 +17,14 @@ import kotlinx.coroutines.launch
  * The **EquinoxViewModel** class is the support class used by the related activities to communicate
  * with the backend and to execute the refreshing routines to update the UI data
  *
+ * Related documentation: [EquinoxViewModel](https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxViewModel.md)
+ *
  * @param snackbarHostState: the host to launch the snackbar messages
  *
  * @author N7ghtm4r3 - Tecknobit
  * @see ViewModel
  * @see FetcherManagerWrapper
+
  */
 @Structure
 abstract class EquinoxViewModel(

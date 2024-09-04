@@ -117,6 +117,8 @@ Add the JitPack repository to your build file
 ## APIs available
 
 - <a href="https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxViewModel.md">**EquinoxViewModel**</a>
+- <a href="https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/SessionManager.md">**SessionManager**</a>
+
 
 The other apis will be gradually released
 
@@ -125,6 +127,8 @@ The other apis will be gradually released
 - EquinoxAlertDialog
 - EquinoxTextField and EquinoxOutlinedTextField
 - EmptyListUI and ErrorUI
+- TextDivider
+- [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
 
 The others composable will be gradually released
 
