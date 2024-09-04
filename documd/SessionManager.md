@@ -110,7 +110,7 @@ class TestViewModel: EquinoxViewModel() {
             )
         }
 
-        override fun haveBeenDisconnected() {
+        override fun hasBeenDisconnected() {
             // the action to execute when the user has been disconnected
         }
    
@@ -185,7 +185,7 @@ class TestViewModel: EquinoxViewModel() {
             )
         }
 
-        override fun haveBeenDisconnected() {
+        override fun hasBeenDisconnected() {
             // the action to execute when the user has been disconnected
         }
    
