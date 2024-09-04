@@ -115,6 +115,14 @@ abstract class EquinoxViewModel(
      * or [ModalBottomSheet]
      */
     @Composable
+    @Deprecated(
+        message = "This method will be removed in the next version because is inefficient when used in iterable situations" +
+                " because will be suspend just one element and the others will be restarted, so will be spammed the requests " +
+                "to restart",
+        level = DeprecationLevel.ERROR,
+        replaceWith = ReplaceWith("Passing the viewmodel instance to the EquinoxDialogs to suspend or restart" +
+                "the current refresher")
+    )
     fun SuspendUntilElementOnScreen(
         elementVisible: MutableState<Boolean>
     ) {
