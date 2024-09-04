@@ -3,4 +3,5 @@
     <string name="retry">Επανάληψη</string>
     <string name="confirm">Επιβεβαίωση</string>
     <string name="dismiss">Απορρίψτε το</string>
+    <string name="server_currently_offline">Ο διακομιστής είναι επί του παρόντος εκτός σύνδεσης</string>
 </resources>

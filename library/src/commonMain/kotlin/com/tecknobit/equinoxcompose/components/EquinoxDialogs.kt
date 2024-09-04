@@ -9,7 +9,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
-import com.tecknobit.equinoxcompose.helpers.EquinoxViewModel
+import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
 import com.tecknobit.library.generated.resources.Res
 import com.tecknobit.library.generated.resources.confirm
 import com.tecknobit.library.generated.resources.dismiss

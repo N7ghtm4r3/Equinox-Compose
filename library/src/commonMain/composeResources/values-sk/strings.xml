@@ -3,4 +3,5 @@
     <string name="retry">Opakovanie</string>
     <string name="confirm">Potvrďte</string>
     <string name="dismiss">Odmietnuť</string>
+    <string name="server_currently_offline">Server je momentálne offline</string>
 </resources>

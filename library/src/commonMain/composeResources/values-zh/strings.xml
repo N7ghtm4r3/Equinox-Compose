@@ -3,4 +3,5 @@
     <string name="retry">重试</string>
     <string name="confirm">确认</string>
     <string name="dismiss">解散</string>
+    <string name="server_currently_offline">服务器目前离线</string>
 </resources>

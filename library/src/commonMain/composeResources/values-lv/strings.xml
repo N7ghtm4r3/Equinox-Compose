@@ -3,4 +3,5 @@
     <string name="retry">Atkārtot</string>
     <string name="confirm">Apstipriniet</string>
     <string name="dismiss">Atbrīvot</string>
+    <string name="server_currently_offline">Serveris pašlaik ir bezsaistē</string>
 </resources>

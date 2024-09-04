@@ -3,4 +3,5 @@
     <string name="retry">Wiederholung</string>
     <string name="confirm">Bestätigen Sie</string>
     <string name="dismiss">Ablehnen</string>
+    <string name="server_currently_offline">Server derzeit offline</string>
 </resources>

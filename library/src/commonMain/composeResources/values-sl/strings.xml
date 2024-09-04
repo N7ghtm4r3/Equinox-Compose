@@ -3,4 +3,5 @@
     <string name="retry">Ponovitev</string>
     <string name="confirm">Potrdite</string>
     <string name="dismiss">Zavrnite</string>
+    <string name="server_currently_offline">Strežnik je trenutno brez povezave</string>
 </resources>

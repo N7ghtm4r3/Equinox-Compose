@@ -3,4 +3,5 @@
     <string name="retry">リトライ</string>
     <string name="confirm">確認</string>
     <string name="dismiss">解散</string>
+    <string name="server_currently_offline">サーバーは現在オフライン</string>
 </resources>
