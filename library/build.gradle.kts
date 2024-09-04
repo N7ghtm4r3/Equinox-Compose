@@ -52,6 +52,9 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(libs.connectivity.core)
+                implementation(libs.connectivity.android)
+                implementation(libs.connectivity.compose.device)
             }
         }
     }

@@ -17,11 +17,9 @@ import com.tecknobit.equinoxcompose.resources.no_internet_connection
 import com.tecknobit.equinoxcompose.resources.server_currently_offline
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
-import java.net.InetAddress
 
 /**
  * The **SessionManager** interface is useful to display the correct content based on the current scenario
@@ -34,8 +32,6 @@ interface SessionManager {
     companion object {
 
         private lateinit var sessionSetup: SessionSetup
-
-        private const val GOOGLE_DNS = "8.8.8.8"
 
         /**
          * *isServerOffline* -> state to manage the server offline scenario
@@ -124,7 +120,6 @@ interface SessionManager {
             enter = fadeIn(),
             exit = fadeOut()
         ) {
-            viewModel.restartRefresher()
             ServerOfflineUi()
         }
         AnimatedVisibility(
@@ -160,23 +155,9 @@ interface SessionManager {
         isServerOffline = remember { mutableStateOf(false) }
         noInternetConnection = remember { mutableStateOf(false) }
         haveBeenDisconnected = remember { mutableStateOf(false) }
-        StartConnectionChecker()
-    }
-
-    @Composable
-    private fun StartConnectionChecker() {
-        MainScope().launch {
-            while (true) {
-                try {
-                    val address = InetAddress.getByName(GOOGLE_DNS)
-                    noInternetConnection.value = address.equals("") || !address.isReachable(500)
-                    println(address.isReachable(1000))
-                } catch (e: Exception) {
-                    noInternetConnection.value = true
-                }
-                delay(750)
-            }
-        }
+        checkInternetConnection(
+            noInternetConnectionState = noInternetConnection
+        )
     }
 
     /**
