@@ -1,18 +1,20 @@
+@file:OptIn(DelicateCoroutinesApi::class)
+
 package com.tecknobit.equinoxcompose.helpers.session
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.SignalWifiConnectedNoInternet4
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.*
 import com.tecknobit.equinoxcompose.components.ErrorUI
-import com.tecknobit.library.generated.resources.Res
-import com.tecknobit.library.generated.resources.server_currently_offline
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.getString
+import java.net.InetAddress
 
 /**
  * The **SessionManager** interface is useful to display the correct content based on the current scenario
@@ -24,12 +26,14 @@ interface SessionManager {
 
     companion object {
 
+        private lateinit var sessionMessages: SessionMessages
+
         /**
          * *isServerOffline* -> state to manage the server offline scenario
          */
         private lateinit var isServerOffline: MutableState<Boolean>
 
-        private lateinit var serverOfflineMessage: String
+        private lateinit var noInternetConnection: MutableState<Boolean>
 
         /**
          * *haveBeenDisconnected* -> when the account has been deleted and the session needs to
@@ -37,32 +41,51 @@ interface SessionManager {
          */
         private lateinit var haveBeenDisconnected: MutableState<Boolean>
 
+        fun setSessionMessages(
+            serverOfflineMessage: String,
+            noInternetConnectionMessage: String
+        ) {
+            setSessionMessages(
+                sessionMessages = SessionMessages(
+                    serverOfflineMessage = serverOfflineMessage,
+                    noInternetConnectionMessage = noInternetConnectionMessage
+                )
+            )
+        }
+
+        fun setSessionMessages(
+            sessionMessages: SessionMessages
+        ) {
+            this.sessionMessages = sessionMessages
+        }
+
         fun setServerOfflineValue(
             isServerOffline: Boolean
         ) {
-            if(::isServerOffline.isInitialized)
-                this.isServerOffline.value = isServerOffline
-        }
-
-        fun setServerOfflineMessage(
-            serverOfflineMessage: String? = null
-        ) {
-            if(serverOfflineMessage == null) {
-                CoroutineScope(Dispatchers.Default).launch {
-                    Companion.serverOfflineMessage = getString(Res.string.server_currently_offline)
+            if(::isServerOffline.isInitialized) {
+                GlobalScope.launch {
+                    this@Companion.isServerOffline.value = isServerOffline
                 }
-            } else
-                this.serverOfflineMessage = serverOfflineMessage
+            }
         }
 
         fun setHaveBeenDisconnectedValue(
             haveBeenDisconnected: Boolean
         ) {
-            if(::haveBeenDisconnected.isInitialized)
-                this.haveBeenDisconnected.value = haveBeenDisconnected
+            if(::haveBeenDisconnected.isInitialized) {
+                GlobalScope.launch {
+                    this@Companion.haveBeenDisconnected.value = haveBeenDisconnected
+                }
+            }
         }
 
     }
+
+    //Res.string.server_currently_offline
+    data class SessionMessages(
+        val serverOfflineMessage: String,
+        val noInternetConnectionMessage: String
+    )
 
     /**
      * Function to display the correct content based on the current scenario such server offline or
@@ -74,7 +97,7 @@ interface SessionManager {
     fun ManagedContent(
         content: @Composable () -> Unit
     ) {
-        InstantiateSessionFlags()
+        InstantiateSessionInstances()
         AnimatedVisibility(
             visible = isServerOffline.value,
             enter = fadeIn(),
@@ -83,7 +106,14 @@ interface SessionManager {
             ServerOfflineUi()
         }
         AnimatedVisibility(
-            visible = !isServerOffline.value,
+            visible = noInternetConnection.value,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            NoInternetConnectionUi()
+        }
+        AnimatedVisibility(
+            visible = !isServerOffline.value && !noInternetConnection.value,
             enter = fadeIn(),
             exit = fadeOut()
         ) {
@@ -95,14 +125,32 @@ interface SessionManager {
     }
 
     /**
-     * Function to instantiate the session flags to manage the different scenarios
+     * Function to instantiate the session instances to manage the different scenarios
      *
      * No-any params required
      */
     @Composable
-    private fun InstantiateSessionFlags() {
+    private fun InstantiateSessionInstances() {
         isServerOffline = remember { mutableStateOf(false) }
+        noInternetConnection = remember { mutableStateOf(false) }
         haveBeenDisconnected = remember { mutableStateOf(false) }
+        StartConnectionChecker()
+    }
+
+    @Composable
+    private fun StartConnectionChecker() {
+        GlobalScope.launch {
+            while (true) {
+                try {
+                    val address = InetAddress.getByName("8.8.8.8")
+                    noInternetConnection.value = !(!address.equals("") && address.isReachable(500))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    noInternetConnection.value = true
+                }
+                delay(1500)
+            }
+        }
     }
 
     /**
@@ -115,7 +163,29 @@ interface SessionManager {
     private fun ServerOfflineUi() {
         ErrorUI(
             errorIcon = Icons.Default.Warning,
-            errorMessage = serverOfflineMessage,
+            errorMessage = try {
+                sessionMessages.serverOfflineMessage
+            } catch (e : UninitializedPropertyAccessException) {
+                throw Exception("You must set the session messages first using the setSessionMessages() method")
+            }
+        )
+    }
+
+    /**
+     * Function to display the content when the internet connection missing
+     *
+     * No-any params required
+     */
+    @Composable
+    @NonRestartableComposable
+    private fun NoInternetConnectionUi() {
+        ErrorUI(
+            errorIcon = Icons.Default.SignalWifiConnectedNoInternet4,
+            errorMessage = try {
+                sessionMessages.noInternetConnectionMessage
+            } catch (e : UninitializedPropertyAccessException) {
+                throw Exception("You must set the session messages first using the setSessionMessages() method")
+            }
         )
     }
 
