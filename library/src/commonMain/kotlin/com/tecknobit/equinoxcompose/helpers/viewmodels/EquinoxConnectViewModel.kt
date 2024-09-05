@@ -2,6 +2,7 @@ package com.tecknobit.equinoxcompose.helpers.viewmodels
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
+import com.tecknobit.apimanager.annotations.Structure
 import com.tecknobit.apimanager.formatters.JsonHelper
 import com.tecknobit.equinox.environment.helpers.EquinoxRequester
 import com.tecknobit.equinox.environment.records.EquinoxItem.IDENTIFIER_KEY
@@ -21,6 +22,7 @@ import com.tecknobit.equinox.inputs.InputValidator.*
  * @see ViewModel
  * @see FetcherManagerWrapper
  */
+@Structure
 abstract class EquinoxConnectViewModel (
     snackbarHostState: SnackbarHostState,
     private val requester: EquinoxRequester,
