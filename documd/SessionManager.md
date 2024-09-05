@@ -66,7 +66,10 @@ class TestViewModel: EquinoxViewModel() {
                     serverOfflineMessage = "server_currently_offline_message",
                     serverOfflineMessageIcon = /* you can customize the icon if needed */
                     noInternetConnectionMessage = "no_internet_message",
-                    noInternetConnectionIcon = ImageVector.vectorResource(id = R.drawable.no_internet)
+                    noInternetConnectionIcon = ImageVector.vectorResource(id = R.drawable.no_internet),
+                    hasBeenDisconnectedAction = {
+                        // the action to execute when the user has been disconnected
+                    }
                 )
                 
                 // ... rest of the application
@@ -85,11 +88,11 @@ class TestViewModel: EquinoxViewModel() {
   ```
   
   You can download it [here](..%2Flibrary%2Fsrc%2FcommonMain%2FcomposeResources%2Fdrawable%2Fno_internet.xml)
-  
-- Use the SessionManager API with a class
-    
+
+- Use the SessionManager API
+
   ```kotlin
-   class Test : SessionManager {
+   class Test {
        
         private val viewModel = TestViewModel()
 
@@ -108,10 +111,6 @@ class TestViewModel: EquinoxViewModel() {
                     // the normal content to display
                 }
             )
-        }
-
-        override fun hasBeenDisconnected() {
-            // the action to execute when the user has been disconnected
         }
    
   }        
@@ -152,7 +151,10 @@ class TestViewModel: EquinoxViewModel() {
                 serverOfflineMessage = "server_currently_offline_message",
                 serverOfflineMessageIcon = /* you can customize the icon if needed */
                 noInternetConnectionMessage = "no_internet_message",
-                noInternetConnectionIcon = /* you can customize the icon if needed */
+                noInternetConnectionIcon = /* you can customize the icon if needed */,
+                hasBeenDisconnectedAction = {
+                    // the action to execute when the user has been disconnected
+                }
             )
   
             // then invoke the App method to launch the application
@@ -161,10 +163,10 @@ class TestViewModel: EquinoxViewModel() {
     }
     ```
 
-- Use the SessionManager API with a class
+- Use the SessionManager API
 
   ```kotlin
-   class Test : SessionManager {
+   class Test {
        
         private val viewModel = TestViewModel()
 
@@ -183,10 +185,6 @@ class TestViewModel: EquinoxViewModel() {
                     // the normal content to display
                 }
             )
-        }
-
-        override fun hasBeenDisconnected() {
-            // the action to execute when the user has been disconnected
         }
    
   }        

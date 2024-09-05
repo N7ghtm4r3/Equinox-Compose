@@ -3,7 +3,7 @@
 **v1.0.1**
 
 Utilities for clients with an architecture based on SpringBoot and Jetpack Compose frameworks. Is a support library
-to implement some utilities for the clients and some default composable such OutlinedTextField, AlertDialogs and 
+to implement some utilities for the clients and some default composable such OutlinedTextField, AlertDialogs and
 different others. Based on the main library [Equinox](https://github.com/N7ghtm4r3/Equinox)
 
 ## Implementation
@@ -78,17 +78,17 @@ Add the JitPack repository to your build file
 
 ```xml
 <repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
 </repositories>
 ```
 - Add the dependencies
 
 ```xml
 <dependency>
-    <groupId>com.github.N7ghtm4r3</groupId>
+  <groupId>com.github.N7ghtm4r3</groupId>
   <artifactId>Equinox</artifactId>
   <version>1.0.3</version>
 </dependency>
@@ -96,7 +96,7 @@ Add the JitPack repository to your build file
 
 ```xml
 <dependency>
-    <groupId>com.github.N7ghtm4r3</groupId>
+  <groupId>com.github.N7ghtm4r3</groupId>
   <artifactId>APIManager</artifactId>
   <version>2.2.3</version>
 </dependency>
@@ -104,7 +104,7 @@ Add the JitPack repository to your build file
 
 ```xml
 <dependency>
-    <groupId>com.github.N7ghtm4r3</groupId>
+  <groupId>com.github.N7ghtm4r3</groupId>
   <artifactId>Equinox-Compose</artifactId>
   <version>1.0.1</version>
 </dependency>
@@ -116,18 +116,17 @@ Add the JitPack repository to your build file
 
 ## APIs available
 
-- <a href="https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxViewModel.md">**EquinoxViewModel**</a>
-- <a href="https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/SessionManager.md">**SessionManager**</a>
-
+- [EquinoxViewModel.md](documd%2FEquinoxViewModel.md)
+- [SessionManager.md](documd%2FSessionManager.md)
 
 The other apis will be gradually released
 
 ## Composable available
 
-- EquinoxAlertDialog
-- EquinoxTextField and EquinoxOutlinedTextField
-- EmptyListUI and ErrorUI
-- TextDivider
+- [EquinoxDialogs.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxDialogs.kt)
+- [EquinoxInputs.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxInputs.kt)
+- [EquinoxUIs.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxUIs.kt)
+- [TextDivider.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
 - [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
 
 The others composable will be gradually released
