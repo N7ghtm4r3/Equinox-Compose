@@ -3,4 +3,6 @@
     <string name="retry">Réessayer</string>
     <string name="confirm">Confirmer</string>
     <string name="dismiss">Rejeter</string>
+    <string name="server_currently_offline">Le serveur est actuellement hors ligne</string>
+    <string name="no_internet_connection">Pas de connexion internet</string>
 </resources>

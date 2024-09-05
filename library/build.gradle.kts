@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.tecknobit"
-version = "1.0.0"
+version = "1.0.1"
 
 kotlin {
     jvm {
@@ -43,16 +43,19 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
                 implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
-                implementation("com.github.N7ghtm4r3:Equinox:1.0.2")
+                implementation("com.github.N7ghtm4r3:Equinox:1.0.3")
+                implementation("org.json:json:20240303")
             }
         }
         val jvmMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
             }
         }
         val androidMain by getting {
             dependencies {
+                implementation(libs.connectivity.core)
+                implementation(libs.connectivity.android)
+                implementation(libs.connectivity.compose.device)
             }
         }
     }
@@ -76,7 +79,7 @@ afterEvaluate {
             create<MavenPublication>("maven") {
                 groupId = "com.tecknobit.equinoxcompose"
                 artifactId = "Equinox-Compose"
-                version = "1.0.0"
+                version = "1.0.1"
                 from(components["kotlin"])
             }
         }
@@ -85,5 +88,6 @@ afterEvaluate {
 
 compose.resources {
     publicResClass = true
+    packageOfResClass = "com.tecknobit.equinoxcompose.resources"
     generateResClass = always
 }

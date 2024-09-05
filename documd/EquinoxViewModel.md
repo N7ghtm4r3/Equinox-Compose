@@ -40,17 +40,12 @@ class Test {
         // start the refreshing routine
         viewModel.refreshRoutine()
         
-        // attach the control flag to the refresher and in automatically it will suspend or will restart
-        // if that element linked to that flag will appear or disappear
-        viewModel.SuspendUntilElementOnScreen(
-            elementVisible = show
-        )
-        
         // an example composable linked to 'show' state
         EquinoxAlertDialog(
             show = show,
             title = "Any title",
             text = "Any text",
+            viewModel = viewModel, // passing the viewmodel allows the component to automatically suspend or restart the refresher
             onDismissAction = {
                 
                 // your code

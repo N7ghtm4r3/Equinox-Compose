@@ -1,4 +1,4 @@
-package com.tecknobit.equinoxcompose.helpers
+package com.tecknobit.equinoxcompose.helpers.viewmodels
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -17,11 +17,14 @@ import kotlinx.coroutines.launch
  * The **EquinoxViewModel** class is the support class used by the related activities to communicate
  * with the backend and to execute the refreshing routines to update the UI data
  *
+ * Related documentation: [EquinoxViewModel](https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxViewModel.md)
+ *
  * @param snackbarHostState: the host to launch the snackbar messages
  *
  * @author N7ghtm4r3 - Tecknobit
  * @see ViewModel
  * @see FetcherManagerWrapper
+ *
  */
 @Structure
 abstract class EquinoxViewModel(
@@ -115,6 +118,14 @@ abstract class EquinoxViewModel(
      * or [ModalBottomSheet]
      */
     @Composable
+    @Deprecated(
+        message = "This method will be removed in the next version because is inefficient when used in iterable situations" +
+                " because will be suspend just one element and the others will be restarted, so will be spammed the requests " +
+                "to restart",
+        level = DeprecationLevel.ERROR,
+        replaceWith = ReplaceWith("Passing the viewmodel instance to the EquinoxDialogs to suspend or restart" +
+                "the current refresher")
+    )
     fun SuspendUntilElementOnScreen(
         elementVisible: MutableState<Boolean>
     ) {
@@ -132,8 +143,21 @@ abstract class EquinoxViewModel(
     protected fun showSnackbarMessage(
         helper: JsonHelper
     ) {
+        showSnackbarMessage(
+            message = helper.getString(RESPONSE_MESSAGE_KEY)
+        )
+    }
+
+    /**
+     * Function to display a response message with a snackbar
+     *
+     * @param message: the message to display
+     */
+    protected fun showSnackbarMessage(
+        message: String
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
-            snackbarHostState?.showSnackbar(helper.getString(RESPONSE_MESSAGE_KEY))
+            snackbarHostState?.showSnackbar(message)
         }
     }
 

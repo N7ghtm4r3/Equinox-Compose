@@ -3,4 +3,6 @@
     <string name="retry">Reîncercare</string>
     <string name="confirm">Confirmați</string>
     <string name="dismiss">Respinge</string>
+    <string name="server_currently_offline">Serverul este în prezent offline</string>
+    <string name="no_internet_connection">Fără conexiune la internet</string>
 </resources>

@@ -3,4 +3,6 @@
     <string name="retry">Försök igen</string>
     <string name="confirm">Bekräfta</string>
     <string name="dismiss">Avvisa</string>
+    <string name="server_currently_offline">Servern är för närvarande offline</string>
+    <string name="no_internet_connection">Ingen internetanslutning</string>
 </resources>
