@@ -44,6 +44,7 @@ kotlin {
                 implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
                 implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
                 implementation("com.github.N7ghtm4r3:Equinox:1.0.3")
+                implementation("org.json:json:20240303")
             }
         }
         val jvmMain by getting {
