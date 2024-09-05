@@ -19,6 +19,23 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 
 /**
+ * The **SessionSetup** class is useful to create a setup for the current session
+ *
+ * @param serverOfflineMessage: the message to use when the server is offline
+ * @param serverOfflineIcon: the icon to use when the server is offline
+ * @param noInternetConnectionMessage: the message to use when the internet connection is not available
+ * @param noInternetConnectionIcon: the icon to use when the internet connection is not available
+ * @param hasBeenDisconnectedAction: the action to execute when the user has been disconnected
+ */
+data class SessionSetup(
+    val serverOfflineMessage: String,
+    val serverOfflineIcon: ImageVector,
+    val noInternetConnectionMessage: String,
+    val noInternetConnectionIcon: ImageVector,
+    val hasBeenDisconnectedAction: () -> Unit
+)
+
+/**
  * *sessionSetup* -> the setup for the session
  */
 private lateinit var sessionSetup: SessionSetup
@@ -109,23 +126,6 @@ fun setHasBeenDisconnectedValue(
         }
     }
 }
-
-/**
- * The **SessionSetup** class is useful to create a setup for the current session
- *
- * @param serverOfflineMessage: the message to use when the server is offline
- * @param serverOfflineIcon: the icon to use when the server is offline
- * @param noInternetConnectionMessage: the message to use when the internet connection is not available
- * @param noInternetConnectionIcon: the icon to use when the internet connection is not available
- * @param hasBeenDisconnectedAction: the action to execute when the user has been disconnected
- */
-data class SessionSetup(
-    val serverOfflineMessage: String,
-    val serverOfflineIcon: ImageVector,
-    val noInternetConnectionMessage: String,
-    val noInternetConnectionIcon: ImageVector,
-    val hasBeenDisconnectedAction: () -> Unit
-)
 
 /**
  * Function to display the correct content based on the current scenario such server offline or

@@ -116,17 +116,18 @@ Add the JitPack repository to your build file
 
 ## APIs available
 
-- [EquinoxViewModel.md](documd%2FEquinoxViewModel.md)
-- [SessionManager.md](documd%2FSessionManager.md)
+- [EquinoxViewModel](documd%2FEquinoxViewModel.md)
+- [SessionManager](documd%2FSessionManager.md)
+- [EquinoxScreen](documd%2FEquinoxScreen.md)
 
 The other apis will be gradually released
 
 ## Composable available
 
-- [EquinoxDialogs.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxDialogs.kt)
-- [EquinoxInputs.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxInputs.kt)
-- [EquinoxUIs.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxUIs.kt)
-- [TextDivider.kt](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
+- [EquinoxDialogs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxDialogs.kt)
+- [EquinoxInputs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxInputs.kt)
+- [EquinoxUIs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxUIs.kt)
+- [TextDivider](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
 - [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
 
 The others composable will be gradually released

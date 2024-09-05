@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
  * @author N7ghtm4r3 - Tecknobit
  * @see ViewModel
  * @see FetcherManagerWrapper
-
+ *
  */
 @Structure
 abstract class EquinoxViewModel(
