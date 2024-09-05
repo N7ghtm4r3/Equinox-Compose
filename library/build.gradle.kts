@@ -1,5 +1,8 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
+import org.jetbrains.dokka.DokkaConfiguration.Visibility.*
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -9,6 +12,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose.compiler)
     id("maven-publish")
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 group = "com.tecknobit"
@@ -90,4 +94,26 @@ compose.resources {
     publicResClass = true
     packageOfResClass = "com.tecknobit.equinoxcompose.resources"
     generateResClass = always
+}
+
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-base:1.9.20")
+    }
+}
+
+subprojects {
+    apply(plugin = "org.jetbrains.dokka")
+}
+
+tasks.dokkaHtml {
+    outputDirectory.set(layout.projectDirectory.dir("docs"))
+    dokkaSourceSets.configureEach {
+        moduleName = "Equinox-Compose"
+        includeNonPublic.set(true)
+        documentedVisibilities.set(setOf(PUBLIC, PROTECTED, PRIVATE))
+    }
+    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+        footerMessage = "(c) 2024 Tecknobit"
+    }
 }
