@@ -107,7 +107,7 @@ subprojects {
 }
 
 tasks.dokkaHtml {
-    outputDirectory.set(layout.projectDirectory.dir("docs"))
+    outputDirectory.set(layout.projectDirectory.dir("../docs"))
     dokkaSourceSets.configureEach {
         moduleName = "Equinox-Compose"
         includeNonPublic.set(true)
