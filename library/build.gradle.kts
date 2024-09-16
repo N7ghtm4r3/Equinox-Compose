@@ -30,7 +30,7 @@ kotlin {
         }
     }
     androidTarget {
-        publishLibraryVariants("release")
+        publishLibraryVariants("release", "debug")
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_18)
         }
@@ -69,7 +69,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.tecknobit.equinoxcompose"
+    namespace = "io.github.n7ghtm4r3"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -87,7 +87,7 @@ mavenPublishing {
         androidVariantsToPublish = listOf("release"),
     ))
     coordinates(
-        groupId = "com.tecknobit.equinoxcompose",
+        groupId = "io.github.n7ghtm4r3",
         artifactId = "Equinox-Compose",
         version = "1.0.1"
     )
@@ -108,6 +108,7 @@ mavenPublishing {
                 id.set("N7ghtm4r3")
                 name.set("Manuel Maurizio")
                 email.set("maurizio.manuel2003@gmail.com")
+                url.set("https://github.com/N7ghtm4r3")
             }
         }
         scm {
