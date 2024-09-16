@@ -1,5 +1,8 @@
 @file:OptIn(ExperimentalKotlinGradlePluginApi::class)
 
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.dokka.DokkaConfiguration.Visibility.*
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
@@ -11,8 +14,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose.compiler)
-    id("maven-publish")
     id("org.jetbrains.dokka") version "1.9.20"
+    id("com.vanniktech.maven.publish") version "0.29.0"
 }
 
 group = "com.tecknobit"
@@ -27,7 +30,7 @@ kotlin {
         }
     }
     androidTarget {
-        publishLibraryVariants("release")
+        publishLibraryVariants("release", "debug")
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_18)
         }
@@ -66,7 +69,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.tecknobit.equinoxcompose"
+    namespace = "io.github.n7ghtm4r3"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -77,17 +80,43 @@ android {
     }
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = "com.tecknobit.equinoxcompose"
-                artifactId = "Equinox-Compose"
-                version = "1.0.1"
-                from(components["kotlin"])
+mavenPublishing {
+    configure(KotlinMultiplatform(
+        javadocJar = JavadocJar.Dokka("dokkaHtml"),
+        sourcesJar = true,
+        androidVariantsToPublish = listOf("release"),
+    ))
+    coordinates(
+        groupId = "io.github.n7ghtm4r3",
+        artifactId = "Equinox-Compose",
+        version = "1.0.1"
+    )
+    pom {
+        name.set("Equinox-Compose")
+        description.set("Utilities for clients with an architecture based on SpringBoot and Jetpack Compose frameworks. Is a support library to implement some utilities for the clients and some default composable such OutlinedTextField, AlertDialogs and different others")
+        inceptionYear.set("2024")
+        url.set("https://github.com/N7ghtm4r3/Equinox-Compose")
+
+        licenses {
+            license {
+                name.set("Apache License, Version 2.0")
+                url.set("https://opensource.org/license/apache-2-0")
             }
         }
+        developers {
+            developer {
+                id.set("N7ghtm4r3")
+                name.set("Manuel Maurizio")
+                email.set("maurizio.manuel2003@gmail.com")
+                url.set("https://github.com/N7ghtm4r3")
+            }
+        }
+        scm {
+            url.set("https://github.com/N7ghtm4r3/Equinox-Compose")
+        }
     }
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 }
 
 compose.resources {
