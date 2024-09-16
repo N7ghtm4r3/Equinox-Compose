@@ -83,7 +83,7 @@ android {
 mavenPublishing {
     configure(KotlinMultiplatform(
         javadocJar = JavadocJar.Dokka("dokkaHtml"),
-        sourcesJar = false,
+        sourcesJar = true,
         androidVariantsToPublish = listOf("release"),
     ))
     coordinates(
@@ -144,11 +144,5 @@ tasks.dokkaHtml {
     }
     pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
         footerMessage = "(c) 2024 Tecknobit"
-    }
-}
-
-afterEvaluate {
-    tasks.withType<Sign>().configureEach {
-        onlyIf { publication -> publication.name.contains("release") }
     }
 }
