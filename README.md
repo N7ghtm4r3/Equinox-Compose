@@ -44,12 +44,12 @@ Add the JitPack repository to your build file
         implementation 'com.github.N7ghtm4r3:APIManager:2.2.3'
         implementation 'com.github.N7ghtm4r3:Equinox-Compose:1.0.1' {
             // you need to exclude the Android library artifacts on a not-Android environment
-            exclude("com.github.N7ghtm4r3.Equinox-Compose", "library-android")
+            exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-android")
 
             // or
     
             // you need to exclude the JVM library artifacts on an Android environment
-            exclude("com.github.N7ghtm4r3.Equinox-Compose", "library-jvm")
+            exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-jvm")
         }
     }
     ```
@@ -60,14 +60,14 @@ Add the JitPack repository to your build file
     dependencies {
         implementation("com.github.N7ghtm4r3:Equinox:1.0.3")
         implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
-        implementation("com.github.N7ghtm4r3:Equinox-Compose:1.0.1") {
+        implementation("io.github.n7ghtm4r3:Equinox-Compose:1.0.1") {
             // you need to exclude the Android library artifacts on a not-Android environment
-            exclude("com.github.N7ghtm4r3.Equinox-Compose", "library-android")
+            exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-android")
 
             // or
     
             // you need to exclude the JVM library artifacts on an Android environment
-            exclude("com.github.N7ghtm4r3.Equinox-Compose", "library-jvm")
+            exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-jvm")
         }
     }
     ```
