@@ -72,6 +72,7 @@ abstract class EquinoxScreen(
     @Composable
     fun ShowContent() {
         LifecycleManager()
+        CollectStates()
         ArrangeScreenContent()
     }
 
@@ -272,5 +273,13 @@ abstract class EquinoxScreen(
             painter.printBold(logMessage, ansiColor)
         }
     }
+
+    /**
+     * Function to collect or instantiate the states of the screen
+     *
+     * No-any params required
+     */
+    @Composable
+    protected abstract fun CollectStates()
 
 }
