@@ -3,14 +3,20 @@ package com.tecknobit.equinoxcompose.helpers.session
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.Lifecycle.Event
 import androidx.lifecycle.Lifecycle.Event.*
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.tecknobit.apimanager.annotations.Structure
 import com.tecknobit.apimanager.apis.ConsolePainter
+import com.tecknobit.apimanager.apis.ConsolePainter.ANSIColor
 import com.tecknobit.apimanager.apis.ConsolePainter.ANSIColor.*
+import com.tecknobit.apimanager.formatters.TimeFormatter
 import com.tecknobit.equinox.FetcherManager.FetcherManagerWrapper
+import com.tecknobit.equinoxcompose.helpers.session.EquinoxScreen.EquinoxScreenEvent.ON_DISPOSE
+import com.tecknobit.equinoxcompose.helpers.session.EquinoxScreen.EquinoxScreenEvent.ON_INIT
+import java.util.*
 
 /**
  * The **EquinoxScreen** class is useful to create a screen with a lifecycle management similar to the Android's activities
@@ -28,6 +34,28 @@ import com.tecknobit.equinox.FetcherManager.FetcherManagerWrapper
 abstract class EquinoxScreen(
     private val loggerEnabled: Boolean = true
 ) {
+
+    /**
+     * *EquinoxScreenEvent* -> available [EquinoxScreen] custom statuses
+     */
+    enum class EquinoxScreenEvent {
+
+        /**
+         * *ON_INIT* -> occurs when the screen has been initialized
+         */
+        ON_INIT,
+
+        /**
+         * *ON_DISPOSE* -> occurs when the screen has been disposed
+         */
+        ON_DISPOSE
+
+    }
+
+    /**
+     * *timeFormatter* -> useful to format the time values
+     */
+    protected val timeFormatter = TimeFormatter.getInstance(Locale.getDefault())
 
     /**
      * *painter* -> the painter used to log the actions occurred in the composable
@@ -86,13 +114,47 @@ abstract class EquinoxScreen(
     }
 
     /**
+     * Function invoked when the [EquinoxScreen] has been instantiated.
+     *
+     * To use this method correctly in have to invoke this in your on `init` block of your custom screen, otherwise
+     * will be never invoked
+     *
+     * No-any params required
+     *
+     * ### Usage
+     *
+     * ```kotlin
+     * class CustomScreen : EquinoxScreen() {
+     *
+     * 	init {
+     * 		onInit();
+     * 	}
+     *
+     * 	override fun onInit() {
+     * 		super.onInit();
+     * 		// your content here
+     * 	}
+     *
+     * }
+     * ```
+     */
+    protected open fun onInit() {
+        logScreenEvent(
+            event = ON_INIT.name,
+            ansiColor = BRIGHT_BLUE
+        )
+    }
+
+    /**
      * Function invoked when the [ShowContent] composable has been created
      *
      * No-any params required
      */
     protected open fun onCreate() {
-        if(loggerEnabled)
-            painter.printBold(ON_CREATE, CYAN)
+        logScreenEvent(
+            event = ON_CREATE,
+            ansiColor = CYAN
+        )
     }
 
     /**
@@ -101,8 +163,10 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onStart() {
-        if(loggerEnabled)
-            painter.printBold(ON_START, GREEN)
+        logScreenEvent(
+            event = ON_START,
+            ansiColor = GREEN
+        )
     }
 
     /**
@@ -111,8 +175,10 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onResume() {
-        if(loggerEnabled)
-            painter.printBold(ON_RESUME, BLUE)
+        logScreenEvent(
+            event = ON_RESUME,
+            ansiColor = BLUE
+        )
     }
 
     /**
@@ -121,8 +187,10 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onPause() {
-        if(loggerEnabled)
-            painter.printBold(ON_PAUSE, YELLOW)
+        logScreenEvent(
+            event = ON_PAUSE,
+            ansiColor = YELLOW
+        )
     }
 
     /**
@@ -131,8 +199,10 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onStop() {
-        if(loggerEnabled)
-            painter.printBold(ON_STOP, RED)
+        logScreenEvent(
+            event = ON_STOP,
+            ansiColor = RED
+        )
     }
 
     /**
@@ -141,8 +211,10 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onDestroy() {
-        if(loggerEnabled)
-            painter.printBold(ON_DESTROY, BRIGHT_RED)
+        logScreenEvent(
+            event = ON_DESTROY,
+            ansiColor = BRIGHT_RED
+        )
     }
 
     /**
@@ -151,8 +223,10 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onAny() {
-        if(loggerEnabled)
-            painter.printBold(ON_ANY, GRAY)
+        logScreenEvent(
+            event = ON_ANY,
+            ansiColor = GRAY
+        )
     }
 
     /**
@@ -161,8 +235,42 @@ abstract class EquinoxScreen(
      * No-any params required
      */
     protected open fun onDispose() {
-        if(loggerEnabled)
-            painter.printBold(ON_ANY, MAGENTA)
+        logScreenEvent(
+            event = ON_DISPOSE.name,
+            ansiColor = MAGENTA
+        )
+    }
+
+    /**
+     * Function to log the event occurred in the current screen
+     *
+     * @param event: the event occurred
+     * @param ansiColor: the color used to identifier the event
+     */
+    protected fun logScreenEvent(
+        event: Event,
+        ansiColor: ANSIColor
+    ) {
+        logScreenEvent(
+            event = event.name,
+            ansiColor = ansiColor
+        )
+    }
+
+    /**
+     * Function to log the event occurred in the current screen
+     *
+     * @param event: the event occurred
+     * @param ansiColor: the color used to identifier the event
+     */
+    protected fun logScreenEvent(
+        event: String,
+        ansiColor: ANSIColor
+    ) {
+        if(loggerEnabled) {
+            val logMessage = "[${this::class.java.name} - ${timeFormatter.formatNowAsString()}] -> $event"
+            painter.printBold(logMessage, ansiColor)
+        }
     }
 
 }

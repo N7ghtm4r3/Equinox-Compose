@@ -19,7 +19,7 @@ plugins {
 }
 
 group = "com.tecknobit"
-version = "1.0.1"
+version = "1.0.2"
 
 kotlin {
     jvm {
@@ -48,10 +48,10 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
-                implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
-                implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
-                implementation("com.github.N7ghtm4r3:Equinox:1.0.3")
-                implementation("org.json:json:20240303")
+                implementation(libs.lifecycle.viewmodel.compose)
+                implementation(libs.apimanager)
+                implementation(libs.equinox)
+                implementation(libs.json)
             }
         }
         val jvmMain by getting {
@@ -89,7 +89,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.n7ghtm4r3",
         artifactId = "Equinox-Compose",
-        version = "1.0.1"
+        version = "1.0.2"
     )
     pom {
         name.set("Equinox-Compose")

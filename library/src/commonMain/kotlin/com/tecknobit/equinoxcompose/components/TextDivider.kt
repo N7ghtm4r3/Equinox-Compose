@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DividerDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -25,6 +24,7 @@ import org.jetbrains.compose.resources.stringResource
  * Component to divide sections by a representative text
  *
  * @param containerModifier: the [Modifier] to apply to the container row
+ * @param textModifier: the [Modifier] to apply to the text composable
  * @param fillMaxWidth: whether the composable must occupy the entire horizontal space
  * @param thickness: thickness of this divider line. Using [Dp.Hairline] will produce a single pixel
  * divider regardless of screen density
@@ -36,6 +36,7 @@ import org.jetbrains.compose.resources.stringResource
 @NonRestartableComposable
 fun TextDivider(
     containerModifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier,
     fillMaxWidth: Boolean = true,
     thickness: Dp = DividerDefaults.Thickness,
     dividerColor: Color = DividerDefaults.color,
@@ -57,6 +58,7 @@ fun TextDivider(
  * Component to divide sections by a representative text
  *
  * @param containerModifier: the [Modifier] to apply to the container row
+ * @param textModifier: the [Modifier] to apply to the text composable
  * @param fillMaxWidth: whether the composable must occupy the entire horizontal space
  * @param thickness: thickness of this divider line. Using [Dp.Hairline] will produce a single pixel
  * divider regardless of screen density
@@ -68,6 +70,7 @@ fun TextDivider(
 @NonRestartableComposable
 fun TextDivider(
     containerModifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier,
     fillMaxWidth: Boolean = true,
     thickness: Dp = DividerDefaults.Thickness,
     dividerColor: Color = DividerDefaults.color,
@@ -92,6 +95,7 @@ fun TextDivider(
             color = dividerColor
         )
         Text(
+            modifier = textModifier,
             text = text,
             style = textStyle,
             textAlign = TextAlign.Center
@@ -121,7 +125,6 @@ private fun CustomDivider(
     thickness: Dp = DividerDefaults.Thickness,
     color: Color = DividerDefaults.color,
 ) {
-    HorizontalDivider()
     Canvas(
         modifier = modifier
             .fillMaxWidth()

@@ -1,15 +1,23 @@
 [versions]
 agp = "8.2.0"
-kotlin = "2.0.0"
+apimanager = "2.2.4"
+equinox = "1.0.4"
+json = "20240303"
+kotlin = "2.0.20"
 compose = "1.6.11"
 connectivity = "1.1.0"
 android-minSdk = "24"
 android-compileSdk = "34"
+lifecycleViewmodelCompose = "2.8.0"
 
 [libraries]
+apimanager = { module = "com.github.N7ghtm4r3:APIManager", version.ref = "apimanager" }
 connectivity-core = { module = "dev.jordond.connectivity:connectivity-core", version.ref = "connectivity" }
 connectivity-android = { module = "dev.jordond.connectivity:connectivity-android", version.ref = "connectivity" }
 connectivity-compose-device = { module = "dev.jordond.connectivity:connectivity-compose-device", version.ref = "connectivity" }
+equinox = { module = "io.github.n7ghtm4r3:Equinox", version.ref = "equinox" }
+json = { module = "org.json:json", version.ref = "json" }
+lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
