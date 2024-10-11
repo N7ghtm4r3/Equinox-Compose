@@ -7,15 +7,14 @@ import androidx.lifecycle.Lifecycle.Event
 import androidx.lifecycle.Lifecycle.Event.*
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
 import com.tecknobit.apimanager.annotations.Structure
 import com.tecknobit.apimanager.apis.ConsolePainter
 import com.tecknobit.apimanager.apis.ConsolePainter.ANSIColor
 import com.tecknobit.apimanager.apis.ConsolePainter.ANSIColor.*
 import com.tecknobit.apimanager.formatters.TimeFormatter
-import com.tecknobit.equinox.FetcherManager.FetcherManagerWrapper
 import com.tecknobit.equinoxcompose.helpers.session.EquinoxScreen.EquinoxScreenEvent.ON_DISPOSE
 import com.tecknobit.equinoxcompose.helpers.session.EquinoxScreen.EquinoxScreenEvent.ON_INIT
+import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
 import java.util.*
 
 /**
@@ -23,16 +22,20 @@ import java.util.*
  *
  * Related documentation: [EquinoxScreen.md](https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxScreen.md.md)
  *
- * @param loggerEnabled: whether enabled the logging to log the events occurred in the [ShowContent] composable
+ * @property loggerEnabled: whether enabled the logging to log the events occurred in the [ShowContent] composable,
+ * it is suggested to disable it in production
+ * @property viewModel: if the screen has got a related viewmodel that will be used to automatically manage the refresher suspension
+ * or restarting with the lifecycle events of the screen
  *
  * @author N7ghtm4r3 - Tecknobit
- * @see ViewModel
- * @see FetcherManagerWrapper
+ *
+ * @param V: generic type used to allow the use of own viewmodel in custom screens
  *
  */
 @Structure
-abstract class EquinoxScreen(
-    private val loggerEnabled: Boolean = true
+abstract class EquinoxScreen<V : EquinoxViewModel>(
+    private val loggerEnabled: Boolean = true,
+    protected open val viewModel: V? = null
 ) {
 
     /**
@@ -147,7 +150,10 @@ abstract class EquinoxScreen(
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been created
+     * Function invoked when the [ShowContent] composable has been created.
+     *
+     * If the [viewModel] of the screen is not `null` will be set the [com.tecknobit.equinox.FetcherManager.activeContext]
+     * as the current screen displayed
      *
      * No-any params required
      */
@@ -156,6 +162,7 @@ abstract class EquinoxScreen(
             event = ON_CREATE,
             ansiColor = CYAN
         )
+        viewModel?.setActiveContext(this::class.java)
     }
 
     /**
@@ -171,19 +178,25 @@ abstract class EquinoxScreen(
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been resumed
+     * Function invoked when the [ShowContent] composable has been resumed.
+     *
+     * If the [viewModel] of the screen is not `null` will be restarted the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
      *
      * No-any params required
+     *
      */
     protected open fun onResume() {
         logScreenEvent(
             event = ON_RESUME,
             ansiColor = BLUE
         )
+        viewModel?.restartRefresher()
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been paused
+     * Function invoked when the [ShowContent] composable has been paused.
+     *
+     * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
      *
      * No-any params required
      */
@@ -192,10 +205,13 @@ abstract class EquinoxScreen(
             event = ON_PAUSE,
             ansiColor = YELLOW
         )
+        viewModel?.suspendRefresher()
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been stopped
+     * Function invoked when the [ShowContent] composable has been stopped.
+     *
+     * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
      *
      * No-any params required
      */
@@ -204,10 +220,13 @@ abstract class EquinoxScreen(
             event = ON_STOP,
             ansiColor = RED
         )
+        viewModel?.suspendRefresher()
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been destroyed
+     * Function invoked when the [ShowContent] composable has been destroyed.
+     *
+     * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
      *
      * No-any params required
      */
@@ -216,6 +235,7 @@ abstract class EquinoxScreen(
             event = ON_DESTROY,
             ansiColor = BRIGHT_RED
         )
+        viewModel?.suspendRefresher()
     }
 
     /**
@@ -231,7 +251,9 @@ abstract class EquinoxScreen(
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been disposed
+     * Function invoked when the [ShowContent] composable has been disposed.
+     *
+     * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
      *
      * No-any params required
      */
@@ -240,6 +262,7 @@ abstract class EquinoxScreen(
             event = ON_DISPOSE.name,
             ansiColor = MAGENTA
         )
+        viewModel?.suspendRefresher()
     }
 
     /**

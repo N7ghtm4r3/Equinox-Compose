@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
  */
 @Structure
 abstract class EquinoxViewModel(
-    protected val snackbarHostState: SnackbarHostState? = null
+    val snackbarHostState: SnackbarHostState? = null
 ) : ViewModel(), FetcherManagerWrapper {
 
     /**

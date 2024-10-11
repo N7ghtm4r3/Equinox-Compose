@@ -8,52 +8,130 @@ To use the EquinoxScreen API you have to follow this guide for a correct impleme
 
 ### Creation of concrete custom screen
 
-Create a concrete custom screen with the custom specifications you need 
+#### With related ViewModel
+
+Create a concrete custom screen with the custom specifications you need and pass as parameter its viewmodel.
+
+In the lifecycle methods will be automatically managed the `refreshinRoutine` of the `viewModel`, but you can override 
+them and implement your logic to manage that routine
 
 ```kotlin
-class TestScreen : EquinoxScreen(
-  loggerEnabled = true // whether enable the logger
+class TestScreen : EquinoxScreen<TestViewModel>( // related viewmodel of TestScreen
+    loggerEnabled = true, // whether the logger is enabled
+    viewModel = TestViewModel(
+        snackbarHostState = SnackbarHostState()
+    ) // its related viewmodel
 ) {
 
-    private val viewModel: TestViewModel = TestViewModel()
+    private lateinit var time: State<String>
+
+    init {
+        onInit()
+    }
 
     @Composable
     override fun ArrangeScreenContent() {
-        // the content of the TestScreen to display
+        Scaffold(
+            snackbarHost = { SnackbarHost(viewModel!!.snackbarHostState!!) }
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    TextDivider(
+                        text = time.value,
+                        textStyle = TextStyle(
+                            fontSize = 40.sp
+                        )
+                    )
+                }
+            }
+        }
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        // example usage of the onCreate method
-        viewModel.setActiveContext(this::class.java)
+    override fun onInit() {
+        super.onInit()
+        // your on init content
     }
 
     override fun onStart() {
         super.onStart()
+        
+        // this lifecycle event cannot be automatically managed because the refresh routine is custom
+        viewModel!!.refreshTime()
+    }
 
-        // example usage of the onStart method
-        viewModel.refreshingRoutine()
+    // where the states of the screen can be collected or instantiated
+    @Composable
+    override fun CollectStates() {
+        time = viewModel!!.time.collectAsState()
     }
-  
-    override fun onPause() {
-        super.onPause()
-      
-        // example usage of the onPause method
-        viewModel.suspendRefresher()
-    }
-  
-    override fun onResume() {
-        super.onResume()
-      
-        // example usage of the onResume method
-        viewModel.restartRefresher()
-    }
-  
-    override fun onDestroy() {
-        super.onDestroy()
 
-        // example usage of the onDestroy method
-        viewModel.suspendRefresher()
+}
+```
+
+#### With no related ViewModel
+
+Create a concrete custom screen with the custom specifications you need without passing the viewmodel
+
+```kotlin
+class TestScreen : EquinoxScreen<EquinoxViewModel>( // this is required and cannot be omitted, but will not be used any viewmodel
+    loggerEnabled = true, // whether the logger is enabled
+) {
+
+    init {
+        onInit()
+    }
+
+    @Composable
+    override fun ArrangeScreenContent() {
+        Scaffold {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    TextDivider(
+                        text = "text",
+                        textStyle = TextStyle(
+                            fontSize = 40.sp
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    override fun onInit() {
+        super.onInit()
+        // your on init content
+    }
+    
+    override fun onStart() {
+        super.onStart()
+        // your on start content
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // your on stop content
+    }
+
+    // where the states of the screen can be collected or instantiated
+    @Composable
+    override fun CollectStates() {
+        // collect your states
     }
 
 }
