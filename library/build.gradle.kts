@@ -63,6 +63,7 @@ kotlin {
                 implementation(libs.connectivity.core)
                 implementation(libs.connectivity.android)
                 implementation(libs.connectivity.compose.device)
+                implementation(libs.startup.runtime)
             }
         }
     }
