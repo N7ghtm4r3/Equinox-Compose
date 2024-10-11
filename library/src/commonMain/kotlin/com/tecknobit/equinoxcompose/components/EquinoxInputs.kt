@@ -19,6 +19,28 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 /**
+ * Default `onValueChange` to use in the `EquinoxInputs` components
+ */
+private val defaultOnValueChange: (
+    ((String) -> Boolean)?,
+    MutableState<Boolean>,
+    MutableState<String>,
+    Boolean,
+    Boolean,
+    String) -> Unit = { validator, isError, value, mustBeInLowerCase, allowsBlankSpaces, it ->
+    if (validator != null)
+        isError.value = value.value.isNotEmpty() && !validator.invoke(it)
+    value.value = if (mustBeInLowerCase)
+        it.lowercase()
+    else
+        it
+    value.value = if(allowsBlankSpaces)
+        it
+    else
+        it.replace(" ", "")
+}
+
+/**
  * Function to display a custom [TextField]
  *
  * @param modifier: the modifier of the text field
@@ -26,6 +48,8 @@ import org.jetbrains.compose.resources.stringResource
  * @param textFieldColors: the colors to use for the [TextField]
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
+ * @param mustBeInLowerCase: whether the input must be in lower case format
+ * @param allowsBlankSpaces: whether the input can contain blank spaces or not
  * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
  * otherwise simple text field
  * @param validator: the function to invoke to validate the input
@@ -50,13 +74,13 @@ fun EquinoxTextField(
     textFieldColors: TextFieldColors = TextFieldDefaults.colors(),
     width: Dp = 280.dp,
     value: MutableState<String>,
+    mustBeInLowerCase: Boolean = false,
+    allowsBlankSpaces: Boolean = true,
     maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     onValueChange: (String) -> Unit = {
-        if (validator != null)
-            isError.value = value.value.isNotEmpty() && !validator.invoke(it)
-        value.value = it
+        defaultOnValueChange(validator, isError, value, mustBeInLowerCase, allowsBlankSpaces, it)
     },
     label: StringResource? = null,
     labelStyle: TextStyle = LocalTextStyle.current,
@@ -73,6 +97,7 @@ fun EquinoxTextField(
         textFieldColors = textFieldColors,
         width = width,
         value = value,
+        mustBeInLowerCase = mustBeInLowerCase,
         maxLines = maxLines,
         validator = validator,
         isError = isError,
@@ -105,6 +130,8 @@ fun EquinoxTextField(
  * @param textFieldColors: the colors to use for the [TextField]
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
+ * @param mustBeInLowerCase: whether the input must be in lower case format
+ * @param allowsBlankSpaces: whether the input can contain blank spaces or not
  * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
  * otherwise simple text field
  * @param validator: the function to invoke to validate the input
@@ -129,13 +156,13 @@ fun EquinoxTextField(
     textFieldColors: TextFieldColors = TextFieldDefaults.colors(),
     width: Dp = 280.dp,
     value: MutableState<String>,
+    mustBeInLowerCase: Boolean = false,
+    allowsBlankSpaces: Boolean = true,
     maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     onValueChange: (String) -> Unit = {
-        if (validator != null)
-            isError.value = value.value.isNotEmpty() && !validator.invoke(it)
-        value.value = it
+        defaultOnValueChange(validator, isError, value, mustBeInLowerCase, allowsBlankSpaces, it)
     },
     label: String? = null,
     labelStyle: TextStyle = LocalTextStyle.current,
@@ -196,6 +223,7 @@ fun EquinoxTextField(
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
  * @param mustBeInLowerCase: whether the input must be in lower case format
+ * @param allowsBlankSpaces: whether the input can contain blank spaces or not
  * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
  * otherwise simple text field
  * @param validator: the function to invoke to validate the input
@@ -223,16 +251,12 @@ fun EquinoxOutlinedTextField(
     width: Dp = 300.dp,
     value: MutableState<String>,
     mustBeInLowerCase: Boolean = false,
+    allowsBlankSpaces: Boolean = true,
     maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     onValueChange: (String) -> Unit = {
-        if (validator != null)
-            isError.value = value.value.isNotEmpty() && !validator.invoke(it)
-        value.value = if (mustBeInLowerCase)
-            it.lowercase()
-        else
-            it
+        defaultOnValueChange(validator, isError, value, mustBeInLowerCase, allowsBlankSpaces, it)
     },
     label: StringResource? = null,
     labelStyle: TextStyle = LocalTextStyle.current,
@@ -296,6 +320,7 @@ fun EquinoxOutlinedTextField(
  * @param width: the width of the text field
  * @param value: the action to execute when the alert dialog has been dismissed
  * @param mustBeInLowerCase: whether the input must be in lower case format
+ * @param allowsBlankSpaces: whether the input can contain blank spaces or not
  * @param maxLines: the max number of lines supported, different from one line the text field is considered as text area,
  * otherwise simple text field
  * @param validator: the function to invoke to validate the input
@@ -323,16 +348,12 @@ fun EquinoxOutlinedTextField(
     width: Dp = 300.dp,
     value: MutableState<String>,
     mustBeInLowerCase: Boolean = false,
+    allowsBlankSpaces: Boolean = true,
     maxLines: Int = 1,
     validator: ((String) -> Boolean)? = null,
     isError: MutableState<Boolean> = remember { mutableStateOf(false) },
     onValueChange: (String) -> Unit = {
-        if (validator != null)
-            isError.value = value.value.isNotEmpty() && !validator.invoke(it)
-        value.value = if (mustBeInLowerCase)
-            it.lowercase()
-        else
-            it
+        defaultOnValueChange(validator, isError, value, mustBeInLowerCase, allowsBlankSpaces, it)
     },
     label: String? = null,
     labelStyle: TextStyle = LocalTextStyle.current,
