@@ -38,11 +38,15 @@ class TestScreen : EquinoxScreen<EquinoxViewModel>() {
 }
 ```
 
-### Appearance
+## Appearance
 
-- Android
+### Android
 
-    [Screen_recording_20241012_142031.webm](Screen_recording_20241012_142031.webm)
+  [splittext-android](https://github.com/user-attachments/assets/455d3fe7-f024-4a2e-a086-18d3ae126ae8)
+
+### Desktop
+
+  [splittext-desktop](https://github.com/user-attachments/assets/e7201169-94ef-4a46-873b-0baec43f5a78)
 
 ## Authors
 
