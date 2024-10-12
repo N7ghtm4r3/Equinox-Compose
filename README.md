@@ -124,15 +124,16 @@ Add the JitPack repository to your build file
 
 The other apis will be gradually released
 
-## Composable available
+## Components available
 
 - [EquinoxDialogs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxDialogs.kt)
 - [EquinoxInputs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxInputs.kt)
 - [EquinoxUIs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxUIs.kt)
 - [TextDivider](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
 - [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
+- [Tile](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTile.kt)
 
-The others composable will be gradually released
+The others components will be gradually released
 
 ## Authors
 
@@ -157,8 +158,6 @@ Thank you for your help!
 
 [![](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
 [![](https://img.shields.io/badge/Kotlin-B125EA?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
-
-[![](https://jitpack.io/v/N7ghtm4r3/Equinox-Compose.svg)](https://jitpack.io/#N7ghtm4r3/Equinox-Compose)
 
 ## Donations
 

@@ -14,12 +14,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Tile component to execute action when clicked
+ *
+ * @param modifier: the modifier to apply to the container [Card]
+ * @param size: the size of the tile
+ * @param shape: the shape of the tile
+ * @param colors: the colors scheme to apply to the tile
+ * @param contentColor: the color of the content, icon and the text
+ * @param elevation: the elevation of the tile
+ * @param icon: the representative icon
+ * @param iconSize: the size of the [icon]
+ * @param text: the representative text
+ * @param fontWeight: the weight to apply to the [text]
+ * @param textStyle: the style to apply to the [text]
+ * @param onClick: the action to execute when the tile has been clicked
+ */
 @Composable
 @NonRestartableComposable
 fun Tile(
@@ -34,11 +50,12 @@ fun Tile(
         defaultElevation = 3.dp
     ),
     icon: ImageVector,
-    iconSize: Dp = 75.dp,
+    iconSize: Dp = 65.dp,
     text: StringResource,
+    fontWeight: FontWeight = FontWeight.Bold,
     textStyle: TextStyle = TextStyle.Default.merge(
         color = contentColor,
-        fontSize = 18.sp
+        fontWeight = fontWeight
     ),
     onClick: () -> Unit
 ) {
@@ -57,6 +74,22 @@ fun Tile(
     )
 }
 
+/**
+ * Tile component to execute action when clicked
+ *
+ * @param modifier: the modifier to apply to the container [Card]
+ * @param size: the size of the tile
+ * @param shape: the shape of the tile
+ * @param colors: the colors scheme to apply to the tile
+ * @param contentColor: the color of the content, icon and the text
+ * @param elevation: the elevation of the tile
+ * @param icon: the representative icon
+ * @param iconSize: the size of the [icon]
+ * @param text: the representative text
+ * @param fontWeight: the weight to apply to the [text]
+ * @param textStyle: the style to apply to the [text]
+ * @param onClick: the action to execute when the tile has been clicked
+ */
 @Composable
 @NonRestartableComposable
 fun Tile(
@@ -71,11 +104,12 @@ fun Tile(
     ),
     contentColor: Color = LocalContentColor.current,
     icon: ImageVector,
-    iconSize: Dp = 75.dp,
+    iconSize: Dp = 65.dp,
     text: String,
+    fontWeight: FontWeight = FontWeight.Bold,
     textStyle: TextStyle = TextStyle.Default.merge(
         color = contentColor,
-        fontSize = 18.sp
+        fontWeight = fontWeight
     ),
     onClick: () -> Unit
 ) {
@@ -103,7 +137,8 @@ fun Tile(
             Text(
                 text = text,
                 style = textStyle.merge(
-                    color = contentColor
+                    color = contentColor,
+                    fontWeight = fontWeight
                 )
             )
         }
