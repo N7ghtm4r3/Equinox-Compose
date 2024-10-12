@@ -117,7 +117,7 @@ Add the JitPack repository to your build file
 ## APIs available
 
 - [EquinoxViewModel](documd%2Fapis%2FEquinoxViewModel.md)
-  - [EquinoxConnectViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxConnectViewModel.kt) -> prebuilt viewmodel to authenticate the user in the system
+  - [EquinoxAuthViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxAuthViewModel.kt) -> prebuilt viewmodel to authenticate the user in the system
   - [EquinoxProfileViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxProfileViewModel.kt) -> prebuilt viewmodel to manage the user account settings and preferences
 - [SessionManager](documd%2Fapis%2FSessionManager.md)
 - [EquinoxScreen](documd%2Fapis%2FEquinoxScreen.md)

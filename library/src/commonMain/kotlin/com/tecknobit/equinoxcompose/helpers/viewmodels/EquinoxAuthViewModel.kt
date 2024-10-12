@@ -11,7 +11,7 @@ import com.tecknobit.equinox.environment.records.EquinoxUser.*
 import com.tecknobit.equinox.inputs.InputValidator.*
 
 /**
- * The **EquinoxConnectViewModel** class is the support class used to execute the authentication requests to the backend
+ * The **EquinoxAuthViewModel** class is the support class used to execute the authentication requests to the backend
  *
  * @param snackbarHostState: the host to launch the snackbar messages
  * @param requester: the instance to manage the requests with the backend
@@ -23,7 +23,7 @@ import com.tecknobit.equinox.inputs.InputValidator.*
  * @see FetcherManagerWrapper
  */
 @Structure
-abstract class EquinoxConnectViewModel (
+abstract class EquinoxAuthViewModel (
     snackbarHostState: SnackbarHostState,
     private val requester: EquinoxRequester,
     private val localUser: EquinoxLocalUser,
