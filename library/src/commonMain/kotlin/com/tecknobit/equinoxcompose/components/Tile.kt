@@ -45,7 +45,7 @@ fun Tile(
         size = 15.dp
     ),
     containerColor: Color = MaterialTheme.colorScheme.primary,
-    contentColor: Color = LocalContentColor.current,
+    contentColor: Color = contentColorFor(containerColor),
     elevation: Dp = 3.dp,
     icon: ImageVector,
     iconSize: Dp = 65.dp,
@@ -97,7 +97,7 @@ fun Tile(
         size = 15.dp
     ),
     containerColor: Color = MaterialTheme.colorScheme.primary,
-    contentColor: Color = LocalContentColor.current,
+    contentColor: Color = contentColorFor(containerColor),
     elevation: Dp = 3.dp,
     icon: ImageVector,
     iconSize: Dp = 65.dp,
