@@ -131,7 +131,7 @@ The other apis will be gradually released
 - [EquinoxUIs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxUIs.kt)
 - [TextDivider](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
 - [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
-- [Tile](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTile.kt)
+- [Tile](documd%2Fcomponents%2Ftile%2FTile.md)
 - [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
 
 The others components will be gradually released

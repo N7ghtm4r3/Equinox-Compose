@@ -21,12 +21,12 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * Tile component to execute action when clicked
+ * Tile component useful to execute action when clicked
  *
  * @param modifier: the modifier to apply to the container [Card]
  * @param size: the size of the tile
  * @param shape: the shape of the tile
- * @param colors: the colors scheme to apply to the tile
+ * @param containerColor: the colors scheme to apply to the tile
  * @param contentColor: the color of the content, icon and the text
  * @param elevation: the elevation of the tile
  * @param icon: the representative icon
@@ -44,11 +44,9 @@ fun Tile(
     shape: Shape = RoundedCornerShape(
         size = 15.dp
     ),
-    colors: CardColors = CardDefaults.cardColors(),
+    containerColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = LocalContentColor.current,
-    elevation: CardElevation = CardDefaults.cardElevation(
-        defaultElevation = 3.dp
-    ),
+    elevation: Dp = 3.dp,
     icon: ImageVector,
     iconSize: Dp = 65.dp,
     text: StringResource,
@@ -63,7 +61,7 @@ fun Tile(
         modifier = modifier,
         size = size,
         shape = shape,
-        colors = colors,
+        containerColor = containerColor,
         contentColor = contentColor,
         icon = icon,
         iconSize = iconSize,
@@ -75,12 +73,12 @@ fun Tile(
 }
 
 /**
- * Tile component to execute action when clicked
+ * Tile component useful to execute action when clicked
  *
  * @param modifier: the modifier to apply to the container [Card]
  * @param size: the size of the tile
  * @param shape: the shape of the tile
- * @param colors: the colors scheme to apply to the tile
+ * @param containerColor: the colors scheme to apply to the tile
  * @param contentColor: the color of the content, icon and the text
  * @param elevation: the elevation of the tile
  * @param icon: the representative icon
@@ -98,11 +96,9 @@ fun Tile(
     shape: Shape = RoundedCornerShape(
         size = 15.dp
     ),
-    colors: CardColors = CardDefaults.cardColors(),
-    elevation: CardElevation = CardDefaults.cardElevation(
-        defaultElevation = 3.dp
-    ),
+    containerColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = LocalContentColor.current,
+    elevation: Dp = 3.dp,
     icon: ImageVector,
     iconSize: Dp = 65.dp,
     text: String,
@@ -117,8 +113,12 @@ fun Tile(
         modifier = modifier
             .size(size),
         shape = shape,
-        colors = colors,
-        elevation = elevation,
+        colors = CardDefaults.cardColors(
+            containerColor = containerColor
+        ),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = elevation
+        ),
         onClick = onClick
     ) {
         Column (

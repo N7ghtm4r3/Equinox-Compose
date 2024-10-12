@@ -1,6 +1,6 @@
-# SplitText
+# Tile
 
-This component allows to the user to insert a split text such OTP codes, PIN or any other texts of this type
+Tile component useful to execute action when clicked
 
 ## Usage
 
@@ -15,22 +15,13 @@ class TestScreen : EquinoxScreen<EquinoxViewModel>() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // create the dedicated state
-            val splitTextState = rememberSplitTextState(
-                splits = 6 // the number of the splits which compose the completed text
-            )
-
-            // create the related component
-            SplitText(
-                splitsTextState = splitTextState,
-                infoText = InfoText( // if omitted will not be displayed nothing
-                    text = "Informative text"
-                )
-            )
-
-            // assemble and get the completed text
-            Text(
-                text = splitTextState.getCompleteText()
+            Tile(
+                icon = Icons.Default.Settings, // representative icon
+                text = "Settings", // representative text
+                contentColor = Color.White, // customize the content color
+                onClick = {
+                    // your action
+                }
             )
         }
     }
@@ -42,11 +33,11 @@ class TestScreen : EquinoxScreen<EquinoxViewModel>() {
 
 ### Android
 
-[splittext-android](https://github.com/user-attachments/assets/455d3fe7-f024-4a2e-a086-18d3ae126ae8)
+<img src="tile-android.png" width="350" height="700" alt="tile-android"/>
 
 ### Desktop
-
-[splittext-desktop](https://github.com/user-attachments/assets/e7201169-94ef-4a46-873b-0baec43f5a78)
+    
+<img src="tile-desktop.png" alt="tile-desktop">
 
 ## Authors
 
