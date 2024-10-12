@@ -117,7 +117,7 @@ fun ErrorUI(
     imageModifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle.Default,
     errorIcon: ImageVector = Icons.Default.Error,
-    errorColor: Color = MaterialTheme.colorScheme.errorContainer,
+    errorColor: Color = MaterialTheme.colorScheme.error,
     errorMessage: StringResource = Res.string.an_error_occurred,
     retryAction: @Composable (() -> Unit)? = null,
     retryText: StringResource = Res.string.retry
@@ -153,7 +153,7 @@ fun ErrorUI(
     imageModifier: Modifier = Modifier,
     textStyle: TextStyle = TextStyle.Default,
     errorIcon: ImageVector = Icons.Default.Error,
-    errorColor: Color = MaterialTheme.colorScheme.errorContainer,
+    errorColor: Color = MaterialTheme.colorScheme.error,
     errorMessage: String,
     retryAction: @Composable (() -> Unit)? = null,
     retryText: String? = null

@@ -1,6 +1,6 @@
 # Equinox-Compose
 
-**v1.0.1**
+**v1.0.2**
 
 Utilities for clients with an architecture based on SpringBoot and Jetpack Compose frameworks. Is a support library
 to implement some utilities for the clients and some default composable such OutlinedTextField, AlertDialogs and
@@ -40,9 +40,9 @@ Add the JitPack repository to your build file
 
     ```gradle
     dependencies {
-        implementation 'com.github.N7ghtm4r3:Equinox:1.0.3'
-        implementation 'com.github.N7ghtm4r3:APIManager:2.2.3'
-        implementation 'com.github.N7ghtm4r3:Equinox-Compose:1.0.1' {
+        implementation 'io.github.n7ghtm4r3:Equinox:1.0.4'
+        implementation 'com.github.N7ghtm4r3:APIManager:2.2.4'
+        implementation 'com.github.N7ghtm4r3:Equinox-Compose:1.0.2' {
             // you need to exclude the Android library artifacts on a not-Android environment
             exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-android")
 
@@ -58,9 +58,9 @@ Add the JitPack repository to your build file
 
     ```gradle
     dependencies {
-        implementation("com.github.N7ghtm4r3:Equinox:1.0.3")
-        implementation("com.github.N7ghtm4r3:APIManager:2.2.3")
-        implementation("io.github.n7ghtm4r3:Equinox-Compose:1.0.1") {
+        implementation("io.github.n7ghtm4r3:Equinox:1.0.4")
+        implementation("com.github.N7ghtm4r3:APIManager:2.2.4")
+        implementation("io.github.n7ghtm4r3:Equinox-Compose:1.0.2") {
             // you need to exclude the Android library artifacts on a not-Android environment
             exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-android")
 
@@ -88,9 +88,9 @@ Add the JitPack repository to your build file
 
 ```xml
 <dependency>
-  <groupId>com.github.N7ghtm4r3</groupId>
+  <groupId>io.github.n7ghtm4r3</groupId>
   <artifactId>Equinox</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
 </dependency>
 ```
 
@@ -104,9 +104,9 @@ Add the JitPack repository to your build file
 
 ```xml
 <dependency>
-  <groupId>com.github.N7ghtm4r3</groupId>
+  <groupId>io.github.n7ghtm4r3</groupId>
   <artifactId>Equinox-Compose</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
@@ -116,23 +116,25 @@ Add the JitPack repository to your build file
 
 ## APIs available
 
-- [EquinoxViewModel](documd%2FEquinoxViewModel.md)
-  - [EquinoxConnectViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxConnectViewModel.kt) -> prebuilt viewmodel to authenticate the user in the system
+- [EquinoxViewModel](documd%2Fapis%2FEquinoxViewModel.md)
+  - [EquinoxAuthViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxAuthViewModel.kt) -> prebuilt viewmodel to authenticate the user in the system
   - [EquinoxProfileViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxProfileViewModel.kt) -> prebuilt viewmodel to manage the user account settings and preferences
-- [SessionManager](documd%2FSessionManager.md)
-- [EquinoxScreen](documd%2FEquinoxScreen.md)
+- [SessionManager](documd%2Fapis%2FSessionManager.md)
+- [EquinoxScreen](documd%2Fapis%2FEquinoxScreen.md)
 
 The other apis will be gradually released
 
-## Composable available
+## Components available
 
 - [EquinoxDialogs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxDialogs.kt)
 - [EquinoxInputs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxInputs.kt)
 - [EquinoxUIs](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FEquinoxUIs.kt)
-- [TextDivider](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
-- [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
+- [TextDivider](documd%2Fcomponents%2Ftextdivider%2FTextDivider.md)
+- [WriteableText](documd%2Fcomponents%2Fwriteabletext%2FWriteableText.md)
+- [Tile](documd%2Fcomponents%2Ftile%2FTile.md)
+- [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
 
-The others composable will be gradually released
+The others components will be gradually released
 
 ## Authors
 
@@ -157,8 +159,6 @@ Thank you for your help!
 
 [![](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
 [![](https://img.shields.io/badge/Kotlin-B125EA?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
-
-[![](https://jitpack.io/v/N7ghtm4r3/Equinox-Compose.svg)](https://jitpack.io/#N7ghtm4r3/Equinox-Compose)
 
 ## Donations
 

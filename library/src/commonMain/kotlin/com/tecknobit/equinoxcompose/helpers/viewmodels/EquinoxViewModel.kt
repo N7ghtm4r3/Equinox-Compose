@@ -1,14 +1,12 @@
 package com.tecknobit.equinoxcompose.helpers.viewmodels
 
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import com.tecknobit.apimanager.annotations.Structure
 import com.tecknobit.apimanager.formatters.JsonHelper
 import com.tecknobit.equinox.FetcherManager
 import com.tecknobit.equinox.FetcherManager.FetcherManagerWrapper
-import com.tecknobit.equinox.Requester.Companion.RESPONSE_MESSAGE_KEY
+import com.tecknobit.equinox.Requester.Companion.responseData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +26,7 @@ import kotlinx.coroutines.launch
  */
 @Structure
 abstract class EquinoxViewModel(
-    protected val snackbarHostState: SnackbarHostState? = null
+    val snackbarHostState: SnackbarHostState? = null
 ) : ViewModel(), FetcherManagerWrapper {
 
     /**
@@ -111,31 +109,6 @@ abstract class EquinoxViewModel(
     }
 
     /**
-     * Function to suspend or restart the current refresher when an element is displayed or is hidden.
-     * This function must be invoked attaching the flag used to control the visibility of that element
-     *
-     * @param elementVisible: the flag [MutableState] used to display or hide an element on the screen such [AlertDialog]
-     * or [ModalBottomSheet]
-     */
-    @Composable
-    @Deprecated(
-        message = "This method will be removed in the next version because is inefficient when used in iterable situations" +
-                " because will be suspend just one element and the others will be restarted, so will be spammed the requests " +
-                "to restart",
-        level = DeprecationLevel.ERROR,
-        replaceWith = ReplaceWith("Passing the viewmodel instance to the EquinoxDialogs to suspend or restart" +
-                "the current refresher")
-    )
-    fun SuspendUntilElementOnScreen(
-        elementVisible: MutableState<Boolean>
-    ) {
-        if(elementVisible.value)
-            suspendRefresher()
-        else
-            restartRefresher()
-    }
-
-    /**
      * Function to display a response message with a snackbar
      *
      * @param helper: the response message received by the backend
@@ -144,7 +117,7 @@ abstract class EquinoxViewModel(
         helper: JsonHelper
     ) {
         showSnackbarMessage(
-            message = helper.getString(RESPONSE_MESSAGE_KEY)
+            message = helper.responseData()
         )
     }
 

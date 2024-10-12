@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcompose.resources.Res
@@ -20,6 +21,8 @@ import org.jetbrains.compose.resources.stringResource
  * Function to display a custom [AlertDialog]
  *
  * @param modifier: the modifier to apply to the [AlertDialog]
+ * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle: the style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
@@ -35,6 +38,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
+    titleModifier: Modifier = Modifier,
+    titleStyle: TextStyle = TextStyle.Default,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     viewModel: EquinoxViewModel? = null,
@@ -45,12 +50,14 @@ fun EquinoxAlertDialog(
     title: StringResource,
     text: StringResource,
     dismissAction: () -> Unit = onDismissAction,
-    dismissText: StringResource = Res.string.dismiss,
+    dismissText: StringResource? = Res.string.dismiss,
     confirmAction: () -> Unit,
     confirmText: StringResource = Res.string.confirm
 ) {
     EquinoxAlertDialog(
         modifier = modifier,
+        titleModifier = titleModifier,
+        titleStyle = titleStyle,
         show = show,
         icon = icon,
         viewModel = viewModel,
@@ -73,6 +80,8 @@ fun EquinoxAlertDialog(
  * Function to display a custom [AlertDialog]
  *
  * @param modifier: the modifier to apply to the [AlertDialog]
+ * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle: the style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
@@ -88,6 +97,8 @@ fun EquinoxAlertDialog(
 @Composable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
+    titleModifier: Modifier = Modifier,
+    titleStyle: TextStyle = TextStyle.Default,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     viewModel: EquinoxViewModel? = null,
@@ -98,12 +109,14 @@ fun EquinoxAlertDialog(
     title: String,
     text: String,
     dismissAction: () -> Unit = onDismissAction,
-    dismissText: String,
+    dismissText: String?,
     confirmAction: () -> Unit,
     confirmText: String
 ) {
     EquinoxAlertDialog(
         modifier = modifier,
+        titleModifier = titleModifier,
+        titleStyle = titleStyle,
         show = show,
         icon = icon,
         viewModel = viewModel,
@@ -126,6 +139,8 @@ fun EquinoxAlertDialog(
  * Function to display a custom [AlertDialog]
  *
  * @param modifier: the modifier to apply to the [AlertDialog]
+ * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle: the style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
@@ -141,6 +156,8 @@ fun EquinoxAlertDialog(
 @Composable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
+    titleModifier: Modifier = Modifier,
+    titleStyle: TextStyle = TextStyle.Default,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     viewModel: EquinoxViewModel? = null,
@@ -151,12 +168,14 @@ fun EquinoxAlertDialog(
     title: StringResource,
     text: @Composable () -> Unit,
     dismissAction: () -> Unit = onDismissAction,
-    dismissText: StringResource = Res.string.dismiss,
+    dismissText: StringResource? = Res.string.dismiss,
     confirmAction: () -> Unit,
     confirmText: StringResource = Res.string.confirm
 ) {
     EquinoxAlertDialog(
         modifier = modifier,
+        titleModifier = titleModifier,
+        titleStyle = titleStyle,
         show = show,
         icon = icon,
         viewModel = viewModel,
@@ -164,7 +183,10 @@ fun EquinoxAlertDialog(
         title = stringResource(title),
         text = text,
         dismissAction = dismissAction,
-        dismissText = stringResource(dismissText),
+        dismissText = if(dismissText != null)
+            stringResource(dismissText)
+        else
+            null,
         confirmAction = confirmAction,
         confirmText = stringResource(confirmText)
     )
@@ -174,6 +196,8 @@ fun EquinoxAlertDialog(
  * Function to display a custom [AlertDialog]
  *
  * @param modifier: the modifier to apply to the [AlertDialog]
+ * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle: the style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
  * @param icon: the icon of the alert dialog
  * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
@@ -189,6 +213,8 @@ fun EquinoxAlertDialog(
 @Composable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
+    titleModifier: Modifier = Modifier,
+    titleStyle: TextStyle = TextStyle.Default,
     show: MutableState<Boolean>,
     icon: ImageVector? = null,
     viewModel: EquinoxViewModel? = null,
@@ -199,7 +225,7 @@ fun EquinoxAlertDialog(
     title: String,
     text: @Composable () -> Unit,
     dismissAction: () -> Unit = onDismissAction,
-    dismissText: String,
+    dismissText: String?,
     confirmAction: () -> Unit,
     confirmText: String
 ) {
@@ -218,19 +244,24 @@ fun EquinoxAlertDialog(
             onDismissRequest = onDismissAction,
             title = {
                 Text(
+                    modifier = titleModifier,
+                    style = titleStyle,
                     text = title
                 )
             },
             text = text,
-            dismissButton = {
-                TextButton(
-                    onClick = dismissAction
-                ) {
-                    Text(
-                        text = dismissText
-                    )
+            dismissButton = if(dismissText != null) {
+                {
+                    TextButton(
+                        onClick = dismissAction
+                    ) {
+                        Text(
+                            text = dismissText
+                        )
+                    }
                 }
-            },
+            } else
+                null,
             confirmButton = {
                 TextButton(
                     onClick = {
