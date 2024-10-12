@@ -116,11 +116,11 @@ Add the JitPack repository to your build file
 
 ## APIs available
 
-- [EquinoxViewModel](documd%2FEquinoxViewModel.md)
+- [EquinoxViewModel](documd%2Fapis%2FEquinoxViewModel.md)
   - [EquinoxConnectViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxConnectViewModel.kt) -> prebuilt viewmodel to authenticate the user in the system
   - [EquinoxProfileViewModel](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fhelpers%2Fviewmodels%2FEquinoxProfileViewModel.kt) -> prebuilt viewmodel to manage the user account settings and preferences
-- [SessionManager](documd%2FSessionManager.md)
-- [EquinoxScreen](documd%2FEquinoxScreen.md)
+- [SessionManager](documd%2Fapis%2FSessionManager.md)
+- [EquinoxScreen](documd%2Fapis%2FEquinoxScreen.md)
 
 The other apis will be gradually released
 
@@ -132,6 +132,7 @@ The other apis will be gradually released
 - [TextDivider](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTextDivider.kt)
 - [WriteableText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FWriteableText.kt)
 - [Tile](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FTile.kt)
+- [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
 
 The others components will be gradually released
 
