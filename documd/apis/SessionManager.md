@@ -87,7 +87,7 @@ class TestViewModel: EquinoxViewModel() {
        |-- no_internet.xml
   ```
   
-  You can download it [here](..%2Flibrary%2Fsrc%2FcommonMain%2FcomposeResources%2Fdrawable%2Fno_internet.xml)
+  You can download it [here](https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/library/src/commonMain/composeResources/drawable/no_internet.xml)
 
 - Use the SessionManager API
 
