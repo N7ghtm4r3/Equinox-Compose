@@ -4,11 +4,19 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
 import com.tecknobit.apimanager.annotations.Structure
 import com.tecknobit.apimanager.formatters.JsonHelper
-import com.tecknobit.equinox.environment.helpers.EquinoxRequester
-import com.tecknobit.equinox.environment.records.EquinoxItem.IDENTIFIER_KEY
-import com.tecknobit.equinox.environment.records.EquinoxLocalUser
-import com.tecknobit.equinox.environment.records.EquinoxUser.*
-import com.tecknobit.equinox.inputs.InputValidator.*
+import com.tecknobit.equinoxbackend.Requester.Companion.sendRequest
+import com.tecknobit.equinoxbackend.environment.helpers.EquinoxRequester
+import com.tecknobit.equinoxbackend.environment.models.EquinoxLocalUser
+import com.tecknobit.equinoxbackend.environment.models.EquinoxUser.*
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.DEFAULT_LANGUAGE
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.LANGUAGES_SUPPORTED
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isHostValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isNameValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isServerSecretValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isSurnameValid
+import java.util.*
 
 /**
  * The **EquinoxAuthViewModel** class is the support class used to execute the authentication requests to the backend
@@ -122,7 +130,7 @@ abstract class EquinoxAuthViewModel (
             requester.changeHost(host.value)
             requester.sendRequest(
                 request = {
-                    requester.signUp(
+                    signUp(
                         serverSecret = serverSecret.value,
                         name = name.value,
                         surname = surname.value,
@@ -153,13 +161,25 @@ abstract class EquinoxAuthViewModel (
      *
      * @return the user language as [String]
      */
-    private fun getUserLanguage(): String {
+    protected fun getUserLanguage(): String {
         val currentLanguageTag = getValidUserLanguage()
         val language = LANGUAGES_SUPPORTED[currentLanguageTag]
         return if (language == null)
             DEFAULT_LANGUAGE
         else
             currentLanguageTag
+    }
+
+    /**
+     * Method to get a supported language for the user
+     *
+     * @return a supported language for the user as [String]
+     */
+    private fun getValidUserLanguage(): String {
+        val currentLanguageTag: String = Locale.getDefault().toLanguageTag().substring(0, 2)
+        if (LANGUAGES_SUPPORTED[currentLanguageTag] == null)
+            return DEFAULT_LANGUAGE
+        return currentLanguageTag
     }
 
     /**
@@ -302,7 +322,7 @@ abstract class EquinoxAuthViewModel (
         name: String,
         surname: String,
         language: String,
-        vararg custom: Any?
+        vararg custom: Any?,
     ) {
         requester.setUserCredentials(
             userId = response.getString(IDENTIFIER_KEY),

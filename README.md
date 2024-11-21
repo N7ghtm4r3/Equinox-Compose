@@ -1,6 +1,6 @@
 # Equinox-Compose
 
-**v1.0.2**
+**v1.0.3**
 
 Utilities for clients with an architecture based on SpringBoot and Jetpack Compose frameworks. Is a support library
 to implement some utilities for the clients and some default composable such OutlinedTextField, AlertDialogs and
@@ -42,7 +42,7 @@ Add the JitPack repository to your build file
     dependencies {
         implementation 'io.github.n7ghtm4r3:Equinox:1.0.4'
         implementation 'com.github.N7ghtm4r3:APIManager:2.2.4'
-        implementation 'com.github.N7ghtm4r3:Equinox-Compose:1.0.2' {
+        implementation 'com.github.N7ghtm4r3:Equinox-Compose:1.0.3' {
             // you need to exclude the Android library artifacts on a not-Android environment
             exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-android")
 
@@ -60,7 +60,7 @@ Add the JitPack repository to your build file
     dependencies {
         implementation("io.github.n7ghtm4r3:Equinox:1.0.4")
         implementation("com.github.N7ghtm4r3:APIManager:2.2.4")
-        implementation("io.github.n7ghtm4r3:Equinox-Compose:1.0.2") {
+        implementation("io.github.n7ghtm4r3:Equinox-Compose:1.0.3") {
             // you need to exclude the Android library artifacts on a not-Android environment
             exclude("io.github.n7ghtm4r3:Equinox-Compose", "library-android")
 
@@ -106,7 +106,7 @@ Add the JitPack repository to your build file
 <dependency>
   <groupId>io.github.n7ghtm4r3</groupId>
   <artifactId>Equinox-Compose</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 

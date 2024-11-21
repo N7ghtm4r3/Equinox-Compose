@@ -15,11 +15,11 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose.compiler)
     id("org.jetbrains.dokka") version "1.9.20"
-    id("com.vanniktech.maven.publish") version "0.29.0"
+    id("com.vanniktech.maven.publish") version "0.30.0"
 }
 
 group = "com.tecknobit"
-version = "1.0.2"
+version = "1.0.3"
 
 kotlin {
     jvm {
@@ -50,8 +50,9 @@ kotlin {
                 implementation(compose.materialIconsExtended)
                 implementation(libs.lifecycle.viewmodel.compose)
                 implementation(libs.apimanager)
-                implementation(libs.equinox)
                 implementation(libs.json)
+                implementation(libs.equinox.backend)
+                implementation(libs.equinox.core)
             }
         }
         val jvmMain by getting {
@@ -90,7 +91,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.n7ghtm4r3",
         artifactId = "Equinox-Compose",
-        version = "1.0.2"
+        version = "1.0.3"
     )
     pom {
         name.set("Equinox-Compose")
@@ -128,7 +129,7 @@ compose.resources {
 
 buildscript {
     dependencies {
-        classpath("org.jetbrains.dokka:dokka-base:1.9.20")
+        classpath(libs.dokka.base)
     }
 }
 

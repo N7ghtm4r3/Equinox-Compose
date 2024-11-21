@@ -2,13 +2,12 @@ package com.tecknobit.equinoxcompose.helpers.viewmodels
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.lifecycle.ViewModel
-import com.tecknobit.apimanager.annotations.Structure
+import androidx.lifecycle.viewModelScope
 import com.tecknobit.apimanager.formatters.JsonHelper
-import com.tecknobit.equinox.FetcherManager
-import com.tecknobit.equinox.FetcherManager.FetcherManagerWrapper
-import com.tecknobit.equinox.Requester.Companion.responseData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.tecknobit.equinoxbackend.FetcherManager
+import com.tecknobit.equinoxbackend.FetcherManager.FetcherManagerWrapper
+import com.tecknobit.equinoxbackend.Requester.Companion.responseData
+import com.tecknobit.equinoxcore.annotations.Structure
 import kotlinx.coroutines.launch
 
 /**
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
  *
  * Related documentation: [EquinoxViewModel](https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxViewModel.md)
  *
- * @param snackbarHostState: the host to launch the snackbar messages
+ * @param snackbarHostState The host to launch the snackbar messages
  *
  * @author N7ghtm4r3 - Tecknobit
  * @see ViewModel
@@ -28,31 +27,26 @@ import kotlinx.coroutines.launch
 abstract class EquinoxViewModel(
     val snackbarHostState: SnackbarHostState? = null
 ) : ViewModel(), FetcherManagerWrapper {
-
-    /**
-     * **refreshRoutine** -> the coroutine used to execute the refresh routines
-     */
-    private val refreshRoutine = CoroutineScope(Dispatchers.Default)
-
+    
     /**
      * **fetcherManager** -> the manager used to fetch the data from the backend
      */
-    private val fetcherManager = FetcherManager(refreshRoutine)
+    private val fetcherManager = FetcherManager(viewModelScope)
 
     /**
-     * Function to get whether the [refreshRoutine] can start, so if there aren't other jobs that
+     * Function to get whether the [viewModelScope] can start, so if there aren't other jobs that
      * routine is already executing
      *
      * No-any params required
      *
-     * @return whether the [refreshRoutine] can start as [Boolean]
+     * @return whether the [viewModelScope] can start as [Boolean]
      */
     override fun canRefresherStart(): Boolean {
         return fetcherManager.canStart()
     }
 
     /**
-     * Function to suspend the current [refreshRoutine] to execute other requests to the backend,
+     * Function to suspend the current [viewModelScope] to execute other requests to the backend,
      * the [isRefreshing] instance will be set as **false** to allow the restart of the routine after executing
      * the other requests
      *
@@ -67,10 +61,10 @@ abstract class EquinoxViewModel(
     /**
      * Function to execute the refresh routine designed
      *
-     * @param currentContext: the current context where the [refreshRoutine] is executing
-     * @param routine: the refresh routine to execute
+     * @param currentContext The current context where the [viewModelScope] is executing
+     * @param routine The refresh routine to execute
      * @param repeatRoutine: whether repeat the routine or execute a single time
-     * @param refreshDelay: the delay between the execution of the requests
+     * @param refreshDelay The delay between the execution of the requests
      */
     override fun execRefreshingRoutine(
         currentContext: Class<*>,
@@ -87,7 +81,7 @@ abstract class EquinoxViewModel(
     }
 
     /**
-     * Function to restart the current [refreshRoutine] after other requests has been executed,
+     * Function to restart the current [viewModelScope] after other requests has been executed,
      * the [isRefreshing] instance will be set as **true** to deny the restart of the routine after executing
      * the other requests
      *
@@ -98,7 +92,7 @@ abstract class EquinoxViewModel(
     }
 
     /**
-     * Function to suspend the current [refreshRoutine] to execute other requests to the backend,
+     * Function to suspend the current [viewModelScope] to execute other requests to the backend,
      * the [isRefreshing] instance will be set as **false** to allow the restart of the routine after executing
      * the other requests
      *
@@ -111,9 +105,9 @@ abstract class EquinoxViewModel(
     /**
      * Function to display a response message with a snackbar
      *
-     * @param helper: the response message received by the backend
+     * @param helper The response message received by the backend
      */
-    protected fun showSnackbarMessage(
+    fun showSnackbarMessage(
         helper: JsonHelper
     ) {
         showSnackbarMessage(
@@ -124,13 +118,15 @@ abstract class EquinoxViewModel(
     /**
      * Function to display a response message with a snackbar
      *
-     * @param message: the message to display
+     * @param message The message to display
      */
-    protected fun showSnackbarMessage(
+    fun showSnackbarMessage(
         message: String
     ) {
-        CoroutineScope(Dispatchers.IO).launch {
-            snackbarHostState?.showSnackbar(message)
+        snackbarHostState?.let { state ->
+            viewModelScope.launch {
+                state.showSnackbar(message)
+            }
         }
     }
 
