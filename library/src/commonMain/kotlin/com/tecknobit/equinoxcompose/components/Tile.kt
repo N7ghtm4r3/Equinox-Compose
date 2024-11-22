@@ -10,8 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -23,18 +27,79 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * Tile component useful to execute action when clicked
  *
- * @param modifier: the modifier to apply to the container [Card]
- * @param size: the size of the tile
- * @param shape: the shape of the tile
- * @param containerColor: the colors scheme to apply to the tile
- * @param contentColor: the color of the content, icon and the text
- * @param elevation: the elevation of the tile
- * @param icon: the representative icon
- * @param iconSize: the size of the [icon]
- * @param text: the representative text
- * @param fontWeight: the weight to apply to the [text]
- * @param textStyle: the style to apply to the [text]
- * @param onClick: the action to execute when the tile has been clicked
+ * @param modifier The modifier to apply to the container [Card]
+ * @param stroke The stroke to apply as dashed effect
+ * @param size The size of the tile
+ * @param cornerRadius The radius of the tile
+ * @param containerColor The colors scheme to apply to the tile
+ * @param contentColor The color of the content, icon and the text
+ * @param elevation The elevation of the tile
+ * @param icon The representative icon
+ * @param iconSize The size of the [icon]
+ * @param text The representative text
+ * @param fontWeight The weight to apply to the [text]
+ * @param textStyle The style to apply to the [text]
+ * @param onClick The action to execute when the tile has been clicked
+ */
+@Composable
+@NonRestartableComposable
+fun DashedTile(
+    modifier: Modifier = Modifier,
+    stroke: Stroke = Stroke(
+        width = 5f,
+        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+    ),
+    size: Dp = 115.dp,
+    cornerRadius: Dp = 15.dp,
+    containerColor: Color = MaterialTheme.colorScheme.primary,
+    contentColor: Color = contentColorFor(containerColor),
+    elevation: Dp = 0.dp,
+    icon: ImageVector,
+    iconSize: Dp = 65.dp,
+    text: StringResource,
+    fontWeight: FontWeight = FontWeight.Bold,
+    textStyle: TextStyle = TextStyle.Default.merge(
+        color = contentColor,
+        fontWeight = fontWeight
+    ),
+    onClick: () -> Unit
+) {
+    Tile(
+        modifier = modifier
+            .drawBehind {
+                drawRoundRect(
+                    color = containerColor,
+                    style = stroke,
+                    cornerRadius = CornerRadius(cornerRadius.toPx())
+                )
+            },
+        size = size,
+        containerColor = Color.Transparent,
+        elevation = elevation,
+        contentColor = containerColor,
+        icon = icon,
+        iconSize = iconSize,
+        text = text,
+        textStyle = textStyle,
+        onClick = onClick
+    )
+}
+
+/**
+ * Tile component useful to execute action when clicked
+ *
+ * @param modifier The modifier to apply to the container [Card]
+ * @param size The size of the tile
+ * @param shape The shape of the tile
+ * @param containerColor The colors scheme to apply to the tile
+ * @param contentColor The color of the content, icon and the text
+ * @param elevation The elevation of the tile
+ * @param icon The representative icon
+ * @param iconSize The size of the [icon]
+ * @param text The representative text
+ * @param fontWeight The weight to apply to the [text]
+ * @param textStyle The style to apply to the [text]
+ * @param onClick The action to execute when the tile has been clicked
  */
 @Composable
 @NonRestartableComposable
@@ -75,18 +140,18 @@ fun Tile(
 /**
  * Tile component useful to execute action when clicked
  *
- * @param modifier: the modifier to apply to the container [Card]
- * @param size: the size of the tile
- * @param shape: the shape of the tile
- * @param containerColor: the colors scheme to apply to the tile
- * @param contentColor: the color of the content, icon and the text
- * @param elevation: the elevation of the tile
- * @param icon: the representative icon
- * @param iconSize: the size of the [icon]
- * @param text: the representative text
- * @param fontWeight: the weight to apply to the [text]
- * @param textStyle: the style to apply to the [text]
- * @param onClick: the action to execute when the tile has been clicked
+ * @param modifier The modifier to apply to the container [Card]
+ * @param size The size of the tile
+ * @param shape The shape of the tile
+ * @param containerColor The colors scheme to apply to the tile
+ * @param contentColor The color of the content, icon and the text
+ * @param elevation The elevation of the tile
+ * @param icon The representative icon
+ * @param iconSize The size of the [icon]
+ * @param text The representative text
+ * @param fontWeight The weight to apply to the [text]
+ * @param textStyle The style to apply to the [text]
+ * @param onClick The action to execute when the tile has been clicked
  */
 @Composable
 @NonRestartableComposable
