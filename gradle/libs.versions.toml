@@ -4,6 +4,7 @@ apimanager = "2.2.4"
 dokkaBase = "1.9.20"
 equinox = "1.0.5"
 json = "20240303"
+kermit = "2.0.4"
 kotlin = "2.0.21"
 compose = "1.7.1"
 connectivity = "1.1.0"
@@ -21,6 +22,7 @@ connectivity-android = { module = "dev.jordond.connectivity:connectivity-android
 connectivity-compose-device = { module = "dev.jordond.connectivity:connectivity-compose-device", version.ref = "connectivity" }
 dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokkaBase" }
 json = { module = "org.json:json", version.ref = "json" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
 

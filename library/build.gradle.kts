@@ -53,6 +53,7 @@ kotlin {
                 implementation(libs.json)
                 implementation(libs.equinox.backend)
                 implementation(libs.equinox.core)
+                implementation(libs.kermit)
             }
         }
         val jvmMain by getting {

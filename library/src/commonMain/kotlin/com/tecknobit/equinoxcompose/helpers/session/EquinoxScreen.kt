@@ -7,11 +7,9 @@ import androidx.lifecycle.Lifecycle.Event
 import androidx.lifecycle.Lifecycle.Event.*
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import co.touchlab.kermit.Logger
 import com.tecknobit.apimanager.annotations.Structure
-import com.tecknobit.apimanager.apis.ConsolePainter
-import com.tecknobit.apimanager.apis.ConsolePainter.ANSIColor
 import com.tecknobit.apimanager.apis.ConsolePainter.ANSIColor.*
-import com.tecknobit.apimanager.formatters.TimeFormatter
 import com.tecknobit.equinoxcompose.helpers.session.EquinoxScreen.EquinoxScreenEvent.ON_DISPOSE
 import com.tecknobit.equinoxcompose.helpers.session.EquinoxScreen.EquinoxScreenEvent.ON_INIT
 import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
@@ -22,9 +20,9 @@ import java.util.*
  *
  * Related documentation: [EquinoxScreen.md](https://github.com/N7ghtm4r3/Equinox-Compose/blob/main/documd/EquinoxScreen.md.md)
  *
- * @property loggerEnabled: whether enabled the logging to log the events occurred in the [ShowContent] composable,
+ * @property loggerEnabled Whether enabled the logging to log the events occurred in the [ShowContent] composable,
  * it is suggested to disable it in production
- * @property viewModel: if the screen has got a related viewmodel that will be used to automatically manage the refresher suspension
+ * @property viewModel If the screen has got a related viewmodel that will be used to automatically manage the refresher suspension
  * or restarting with the lifecycle events of the screen
  *
  * @author N7ghtm4r3 - Tecknobit
@@ -56,21 +54,9 @@ abstract class EquinoxScreen<V : EquinoxViewModel>(
     }
 
     /**
-     * *timeFormatter* -> useful to format the time values
-     */
-    protected val timeFormatter = TimeFormatter.getInstance(Locale.getDefault())
-
-    /**
-     * *painter* -> the painter used to log the actions occurred in the composable
-     */
-    private val painter = ConsolePainter()
-
-    /**
-     * Function to display the content of the screen
+     * Method to display the content of the screen
      *
-     * Its lifecycle will be managed invoking the [LifecycleManager] method
-     *
-     * No-any params required
+     * Its lifecycle will be managed invoking the [LifecycleManager]
      */
     @Composable
     fun ShowContent() {
@@ -80,17 +66,15 @@ abstract class EquinoxScreen<V : EquinoxViewModel>(
     }
 
     /**
-     * Function to arrange the content of the screen to display
-     *
-     * No-any params required
+     * Method to arrange the content of the screen to display
      */
     @Composable
     protected abstract fun ArrangeScreenContent()
 
     /**
-     * Function to manage the lifecycle of the composable where this function has been invoked
+     * Method to manage the lifecycle of the composable where this Method has been invoked
      *
-     * @param lifecycleOwner: the owner of the current lifecycle
+     * @param lifecycleOwner The owner of the current lifecycle
      */
     @Composable
     private fun LifecycleManager(
@@ -118,12 +102,10 @@ abstract class EquinoxScreen<V : EquinoxViewModel>(
     }
 
     /**
-     * Function invoked when the [EquinoxScreen] has been instantiated.
+     * Method invoked when the [EquinoxScreen] has been instantiated.
      *
-     * To use this method correctly in have to invoke this in your on `init` block of your custom screen, otherwise
+     * To use this correctly in have to invoke this in your on `init` block of your custom screen, otherwise
      * will be never invoked
-     *
-     * No-any params required
      *
      * ### Usage
      *
@@ -144,13 +126,12 @@ abstract class EquinoxScreen<V : EquinoxViewModel>(
      */
     protected open fun onInit() {
         logScreenEvent(
-            event = ON_INIT.name,
-            ansiColor = BRIGHT_BLUE
+            event = ON_INIT.name
         )
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been created.
+     * Method invoked when the [ShowContent] composable has been created.
      *
      * If the [viewModel] of the screen is not `null` will be set the [com.tecknobit.equinox.FetcherManager.activeContext]
      * as the current screen displayed
@@ -159,148 +140,121 @@ abstract class EquinoxScreen<V : EquinoxViewModel>(
      */
     protected open fun onCreate() {
         logScreenEvent(
-            event = ON_CREATE,
-            ansiColor = CYAN
+            event = ON_CREATE
         )
         viewModel?.setActiveContext(this::class.java)
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been started
-     *
-     * No-any params required
+     * Method invoked when the [ShowContent] composable has been started
      */
     protected open fun onStart() {
         logScreenEvent(
-            event = ON_START,
-            ansiColor = GREEN
+            event = ON_START
         )
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been resumed.
+     * Method invoked when the [ShowContent] composable has been resumed.
      *
      * If the [viewModel] of the screen is not `null` will be restarted the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
-     *
-     * No-any params required
      *
      */
     protected open fun onResume() {
         logScreenEvent(
-            event = ON_RESUME,
-            ansiColor = BLUE
+            event = ON_RESUME
         )
         viewModel?.restartRefresher()
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been paused.
+     * Method invoked when the [ShowContent] composable has been paused.
      *
      * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
-     *
-     * No-any params required
      */
     protected open fun onPause() {
         logScreenEvent(
-            event = ON_PAUSE,
-            ansiColor = YELLOW
+            event = ON_PAUSE
         )
         viewModel?.suspendRefresher()
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been stopped.
+     * Method invoked when the [ShowContent] composable has been stopped.
      *
      * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
-     *
-     * No-any params required
      */
     protected open fun onStop() {
         logScreenEvent(
-            event = ON_STOP,
-            ansiColor = RED
+            event = ON_STOP
         )
         viewModel?.suspendRefresher()
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been destroyed.
+     * Method invoked when the [ShowContent] composable has been destroyed.
      *
      * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
-     *
-     * No-any params required
      */
     protected open fun onDestroy() {
         logScreenEvent(
-            event = ON_DESTROY,
-            ansiColor = BRIGHT_RED
+            event = ON_DESTROY
         )
         viewModel?.suspendRefresher()
     }
 
     /**
-     * Function invoked when in the [ShowContent] composable has occurred any of the possible events
-     *
-     * No-any params required
+     * Method invoked when in the [ShowContent] composable has occurred any of the possible events
      */
     protected open fun onAny() {
         logScreenEvent(
-            event = ON_ANY,
-            ansiColor = GRAY
+            event = ON_ANY
         )
     }
 
     /**
-     * Function invoked when the [ShowContent] composable has been disposed.
+     * Method invoked when the [ShowContent] composable has been disposed.
      *
      * If the [viewModel] of the screen is not `null` will be suspended the [com.tecknobit.equinox.FetcherManager.refreshRoutine]
-     *
-     * No-any params required
      */
     protected open fun onDispose() {
         logScreenEvent(
-            event = ON_DISPOSE.name,
-            ansiColor = MAGENTA
+            event = ON_DISPOSE.name
         )
         viewModel?.suspendRefresher()
     }
 
     /**
-     * Function to log the event occurred in the current screen
+     * Method to log the event occurred in the current screen
      *
-     * @param event: the event occurred
-     * @param ansiColor: the color used to identifier the event
+     * @param event The event occurred
      */
     protected fun logScreenEvent(
-        event: Event,
-        ansiColor: ANSIColor
+        event: Event
     ) {
         logScreenEvent(
-            event = event.name,
-            ansiColor = ansiColor
+            event = event.name
         )
     }
 
     /**
-     * Function to log the event occurred in the current screen
+     * Method to log the event occurred in the current screen
      *
-     * @param event: the event occurred
-     * @param ansiColor: the color used to identifier the event
+     * @param event The event occurred
      */
     protected fun logScreenEvent(
-        event: String,
-        ansiColor: ANSIColor
+        event: String
     ) {
         if(loggerEnabled) {
-            val logMessage = "[${this::class.java.name} - ${timeFormatter.formatNowAsString()}] -> $event"
-            painter.printBold(logMessage, ansiColor)
+            Logger.i(
+                tag = this::class.simpleName!!,
+                messageString = "Current status -> $event"
+            )
         }
     }
 
     /**
-     * Function to collect or instantiate the states of the screen
-     *
-     * No-any params required
+     * Method to collect or instantiate the states of the screen
      */
     @Composable
     protected abstract fun CollectStates()
