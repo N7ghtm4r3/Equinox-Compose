@@ -5,4 +5,5 @@
     <string name="dismiss">Ablehnen</string>
     <string name="server_currently_offline">Server derzeit offline</string>
     <string name="no_internet_connection">Keine Internetverbindung</string>
+    <string name="loading_data">Daten laden...</string>
 </resources>

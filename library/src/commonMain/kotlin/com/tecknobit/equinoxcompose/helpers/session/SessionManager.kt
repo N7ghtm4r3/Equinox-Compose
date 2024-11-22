@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.tecknobit.equinoxcompose.components.ErrorUI
+import com.tecknobit.equinoxcompose.components.LoadingItemUI
 import com.tecknobit.equinoxcompose.helpers.session.SessionStatus.*
 import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcompose.resources.Res
@@ -167,7 +168,7 @@ fun setHasBeenDisconnectedValue(
  * @param content The content to display in a normal scenario
  * @param viewModel The viewmodel used by the context where this method has been invoked, this is
  * used to stop the refreshing routine when the internet connection is not available by the [NoInternetConnectionUi]
- *
+ * @param loadingRoutine The routine used to load the data
  * @param serverOfflineRetryText The informative text for the user
  * @param serverOfflineRetryAction The action to retry the connection to the server
  * @param noInternetConnectionRetryText The informative text for the user
@@ -177,6 +178,7 @@ fun setHasBeenDisconnectedValue(
 fun ManagedContent(
     content: @Composable () -> Unit,
     viewModel: EquinoxViewModel,
+    loadingRoutine: (() -> Boolean)? = null,
     serverOfflineRetryText: String? = null,
     serverOfflineRetryAction: @Composable (() -> Unit)? = null,
     noInternetConnectionRetryText: String? = null,
@@ -217,7 +219,13 @@ fun ManagedContent(
         } else {
             sessionStatus.value = OPERATIONAL
             viewModel.restartRefresher()
-            content.invoke()
+            if(loadingRoutine != null) {
+                LoadingItemUI(
+                    loadingRoutine = loadingRoutine,
+                    contentLoaded = content
+                )
+            } else
+                content.invoke()
         }
     }
 }

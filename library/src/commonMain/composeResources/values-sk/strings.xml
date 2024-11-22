@@ -5,4 +5,5 @@
     <string name="dismiss">Odmietnuť</string>
     <string name="server_currently_offline">Server je momentálne offline</string>
     <string name="no_internet_connection">Žiadne internetové pripojenie</string>
+    <string name="loading_data">Načítanie údajov...</string>
 </resources>

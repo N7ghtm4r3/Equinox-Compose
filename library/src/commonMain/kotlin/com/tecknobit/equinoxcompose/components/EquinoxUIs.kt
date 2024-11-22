@@ -1,19 +1,12 @@
 package com.tecknobit.equinoxcompose.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,9 +17,108 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.resources.Res
 import com.tecknobit.equinoxcompose.resources.an_error_occurred
+import com.tecknobit.equinoxcompose.resources.loading_data
 import com.tecknobit.equinoxcompose.resources.retry
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+
+/**
+ * Method to display a layout when a list of values is empty
+ *
+ * @param containerModifier The modifier to apply to the container column
+ * @param animations The set of the animations to use to animate the layout
+ * @param textStyle The style to apply to the text
+ * @param loadingRoutine The routine used to load the data
+ * @param loadingIndicator The loading indicator to display
+ * @param contentLoaded The content to display when the data have been loaded
+ * @param themeColor The color to use into the composable
+ */
+@Composable
+@NonRestartableComposable
+fun LoadingItemUI(
+    containerModifier: Modifier = Modifier,
+    animations: UIAnimations? = null,
+    textStyle: TextStyle = TextStyle.Default,
+    loadingRoutine: () -> Boolean,
+    contentLoaded: @Composable () -> Unit,
+    themeColor: Color = MaterialTheme.colorScheme.primary,
+    loadingIndicator: @Composable () -> Unit = {
+        Surface {
+            Column (
+                modifier = containerModifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(85.dp),
+                    strokeWidth = 8.dp
+                )
+                Text(
+                    modifier = Modifier
+                        .padding(
+                            top = 16.dp
+                        ),
+                    style = textStyle,
+                    text = stringResource(Res.string.loading_data),
+                    color = themeColor
+                )
+            }
+        }
+    }
+) {
+    if(animations != null) {
+        AnimatedVisibility(
+            visible = animations.visible,
+            enter = animations.onEnter,
+            exit = animations.onExit
+        ) {
+            LoadingItemUIContent(
+                loadingRoutine = loadingRoutine,
+                loadingIndicator = loadingIndicator,
+                contentLoaded = contentLoaded
+            )
+        }
+    } else {
+        LoadingItemUIContent(
+            loadingRoutine = loadingRoutine,
+            loadingIndicator = loadingIndicator,
+            contentLoaded = contentLoaded
+        )
+    }
+}
+
+/**
+ * Method to display the content of the [EmptyListUI]
+ *
+ * @param loadingRoutine The routine used to load the data
+ * @param loadingIndicator The loading indicator to display
+ * @param contentLoaded The content to display when the data have been loaded
+ */
+@Composable
+@NonRestartableComposable
+private fun LoadingItemUIContent(
+    loadingRoutine: () -> Boolean,
+    loadingIndicator: @Composable () -> Unit,
+    contentLoaded: @Composable () -> Unit
+) {
+    val isLoading = loadingRoutine.invoke()
+    AnimatedVisibility(
+        visible = isLoading,
+        enter = fadeIn(),
+        exit = fadeOut()
+    ) {
+        contentLoaded.invoke()
+    }
+    AnimatedVisibility(
+        visible = !isLoading ,
+        enter = fadeIn(),
+        exit = fadeOut()
+    ) {
+        loadingIndicator.invoke()
+    }
+}
 
 /**
  * Method to display a layout when a list of values is empty

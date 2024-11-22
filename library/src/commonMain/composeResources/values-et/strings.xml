@@ -5,4 +5,5 @@
     <string name="dismiss">Lase lahti</string>
     <string name="server_currently_offline">Server on praegu võrguühenduseta</string>
     <string name="no_internet_connection">Internetiühendus puudub</string>
+    <string name="loading_data">Andmete laadimine...</string>
 </resources>
