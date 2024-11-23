@@ -8,7 +8,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 /**
  * The remember function used to create a [SplitTextState] for a [SplitText] component
  *
- * @param splits: the number of splits used to create the [SplitText] component
+ * @param splits The number of splits used to create the [SplitText] component
  */
 @Composable
 fun rememberSplitTextState(
@@ -30,8 +30,8 @@ fun rememberSplitTextState(
  * The **SplitTextState** class is useful to manage a [SplitText] component giving the details currently
  * used in that component
  *
- * @param splits: he number of splits used to create the component
- * @param initialSliceValues: the initial values of the slices
+ * @param splits The number of splits used to create the component
+ * @param initialSliceValues The initial values of the slices
  *
  * @author N7ghtm4r3 - Tecknobit
  */
@@ -52,7 +52,7 @@ class SplitTextState internal constructor(
      */
     @Composable
     @NonRestartableComposable
-    fun CreateSlices() {
+    internal fun CreateSlices() {
         textSlices.clear()
         repeat(splits) { index ->
             textSlices.add(
@@ -83,9 +83,11 @@ class SplitTextState internal constructor(
  * The **SplitTextSaver** custom saver allow the [SplitTextState] to save and restore correctly the
  * values for the [SplitText] component
  *
+ * @see Saver
+ *
  * @author N7ghtm4r3 - Tecknobit
  */
-object SplitTextSaver : Saver<SplitTextState, Pair<Int, List<String>>> {
+internal object SplitTextSaver : Saver<SplitTextState, Pair<Int, List<String>>> {
 
     /**
      * Convert the value into a saveable one. If null is returned the value will not be saved.
