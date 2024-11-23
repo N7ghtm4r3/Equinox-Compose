@@ -134,6 +134,7 @@ The other apis will be gradually released
 - [Tile](documd%2Fcomponents%2Ftile%2FTile.md)
 - [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
 - [ExpandableText](documd%2Fcomponents%2Fexpandabletext%2FExpandableText.md)
+- [TabSelector](documd%2Fcomponents%2Ftabselector%2FTabSelector.md)
 
 The others components will be gradually released
 
