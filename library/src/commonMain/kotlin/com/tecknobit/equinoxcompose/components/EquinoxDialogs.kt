@@ -6,36 +6,41 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.tecknobit.equinoxcompose.helpers.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcompose.resources.Res
 import com.tecknobit.equinoxcompose.resources.confirm
 import com.tecknobit.equinoxcompose.resources.dismiss
+import com.tecknobit.equinoxcore.annotations.Wrapper
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 /**
  * Function to display a custom [AlertDialog]
  *
- * @param modifier: the modifier to apply to the [AlertDialog]
- * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
- * @param titleStyle: the style to apply to the title of the [AlertDialog]
+ * @param modifier The modifier to apply to the [AlertDialog]
+ * @param titleModifier The modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle The style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
- * @param icon: the icon of the alert dialog
- * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
+ * @param icon The icon of the alert dialog
+ * @param viewModel The viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
  * it allows to manage in automatically the refresher, so suspend it or restarting it
- * @param onDismissAction: the action to execute when the alert dialog has been dismissed
- * @param title: the title of the alert dialog
- * @param text: the text displayed in the alert dialog
- * @param dismissAction: the action to execute when the user dismissed the action
- * @param dismissText: the text of the dismiss [TextButton]
- * @param confirmAction: the action to execute when the used confirmed the action
- * @param confirmText: the text of the confirm [TextButton]
+ * @param onDismissAction The action to execute when the alert dialog has been dismissed
+ * @param title The title of the alert dialog
+ * @param text The text displayed in the alert dialog
+ * @param dismissAction The action to execute when the user dismissed the action
+ * @param dismissText The text of the dismiss [TextButton]
+ * @param confirmAction The action to execute when the used confirmed the action
+ * @param confirmText The text of the confirm [TextButton]
  */
 @Composable
+@NonRestartableComposable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
     titleModifier: Modifier = Modifier,
@@ -79,22 +84,23 @@ fun EquinoxAlertDialog(
 /**
  * Function to display a custom [AlertDialog]
  *
- * @param modifier: the modifier to apply to the [AlertDialog]
- * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
- * @param titleStyle: the style to apply to the title of the [AlertDialog]
+ * @param modifier The modifier to apply to the [AlertDialog]
+ * @param titleModifier The modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle The style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
- * @param icon: the icon of the alert dialog
- * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
+ * @param icon The icon of the alert dialog
+ * @param viewModel The viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
  * it allows to manage in automatically the refresher, so suspend it or restarting it
- * @param onDismissAction: the action to execute when the alert dialog has been dismissed
- * @param title: the title of the alert dialog
- * @param text: the text displayed in the alert dialog
- * @param dismissAction: the action to execute when the user dismissed the action
- * @param dismissText: the text of the dismiss [TextButton]
- * @param confirmAction: the action to execute when the used confirmed the action
- * @param confirmText: the text of the confirm [TextButton]
+ * @param onDismissAction The action to execute when the alert dialog has been dismissed
+ * @param title The title of the alert dialog
+ * @param text The text displayed in the alert dialog
+ * @param dismissAction The action to execute when the user dismissed the action
+ * @param dismissText The text of the dismiss [TextButton]
+ * @param confirmAction The action to execute when the used confirmed the action
+ * @param confirmText The text of the confirm [TextButton]
  */
 @Composable
+@NonRestartableComposable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
     titleModifier: Modifier = Modifier,
@@ -138,22 +144,23 @@ fun EquinoxAlertDialog(
 /**
  * Function to display a custom [AlertDialog]
  *
- * @param modifier: the modifier to apply to the [AlertDialog]
- * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
- * @param titleStyle: the style to apply to the title of the [AlertDialog]
+ * @param modifier The modifier to apply to the [AlertDialog]
+ * @param titleModifier The modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle The style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
- * @param icon: the icon of the alert dialog
- * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
+ * @param icon The icon of the alert dialog
+ * @param viewModel The viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
  * it allows to manage in automatically the refresher, so suspend it or restarting it
- * @param onDismissAction: the action to execute when the alert dialog has been dismissed
- * @param title: the title of the alert dialog
- * @param text: the text displayed in the alert dialog
- * @param dismissAction: the action to execute when the user dismissed the action
- * @param dismissText: the text of the dismiss [TextButton]
- * @param confirmAction: the action to execute when the used confirmed the action
- * @param confirmText: the text of the confirm [TextButton]
+ * @param onDismissAction The action to execute when the alert dialog has been dismissed
+ * @param title The title of the alert dialog
+ * @param text The text displayed in the alert dialog
+ * @param dismissAction The action to execute when the user dismissed the action
+ * @param dismissText The text of the dismiss [TextButton]
+ * @param confirmAction The action to execute when the used confirmed the action
+ * @param confirmText The text of the confirm [TextButton]
  */
 @Composable
+@NonRestartableComposable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
     titleModifier: Modifier = Modifier,
@@ -195,22 +202,23 @@ fun EquinoxAlertDialog(
 /**
  * Function to display a custom [AlertDialog]
  *
- * @param modifier: the modifier to apply to the [AlertDialog]
- * @param titleModifier: the modifier to apply to the title of the [AlertDialog]
- * @param titleStyle: the style to apply to the title of the [AlertDialog]
+ * @param modifier The modifier to apply to the [AlertDialog]
+ * @param titleModifier The modifier to apply to the title of the [AlertDialog]
+ * @param titleStyle The style to apply to the title of the [AlertDialog]
  * @param show: whether show the alert dialog
- * @param icon: the icon of the alert dialog
- * @param viewModel: the viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
+ * @param icon The icon of the alert dialog
+ * @param viewModel The viewmodel, if available, used in the context where the [AlertDialog] has been invoked, passing
  * it allows to manage in automatically the refresher, so suspend it or restarting it
- * @param onDismissAction: the action to execute when the alert dialog has been dismissed
- * @param title: the title of the alert dialog
- * @param text: the text displayed in the alert dialog
- * @param dismissAction: the action to execute when the user dismissed the action
- * @param dismissText: the text of the dismiss [TextButton]
- * @param confirmAction: the action to execute when the used confirmed the action
- * @param confirmText: the text of the confirm [TextButton]
+ * @param onDismissAction The action to execute when the alert dialog has been dismissed
+ * @param title The title of the alert dialog
+ * @param text The text displayed in the alert dialog
+ * @param dismissAction The action to execute when the user dismissed the action
+ * @param dismissText The text of the dismiss [TextButton]
+ * @param confirmAction The action to execute when the used confirmed the action
+ * @param confirmText The text of the confirm [TextButton]
  */
 @Composable
+@NonRestartableComposable
 fun EquinoxAlertDialog(
     modifier: Modifier = Modifier,
     titleModifier: Modifier = Modifier,
@@ -274,6 +282,41 @@ fun EquinoxAlertDialog(
                     )
                 }
             }
+        )
+    }
+}
+
+/**
+ * Simply [Dialog] wrapper to attach the [EquinoxViewModel]'s logic
+ *
+ * @param show: whether show the dialog
+ * @param viewModel The viewmodel, if available, used in the context where the [Dialog] has been invoked, passing
+ * it allows to manage in automatically the refresher, so suspend it or restarting it
+ * @param dialogProperties The properties to apply to the [Dialog]
+ * @param onDismissRequest The action to execute when the dialog has been dismissed
+ * @param dialogContent The content of the [Dialog]
+ */
+@Wrapper(
+    wrapperOf = "Dialog"
+)
+@Composable
+@NonRestartableComposable
+fun EquinoxDialog(
+    show: MutableState<Boolean>,
+    viewModel: EquinoxViewModel? = null,
+    dialogProperties: DialogProperties = DialogProperties(),
+    onDismissRequest: () -> Unit = {
+        show.value = false
+        viewModel?.restartRefresher()
+    },
+    dialogContent: @Composable () -> Unit
+) {
+    if(show.value) {
+        viewModel?.suspendRefresher()
+        Dialog(
+            properties = dialogProperties,
+            onDismissRequest = onDismissRequest,
+            content = dialogContent
         )
     }
 }
