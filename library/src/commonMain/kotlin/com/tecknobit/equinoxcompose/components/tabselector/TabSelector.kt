@@ -1,6 +1,5 @@
 package com.tecknobit.equinoxcompose.components.tabselector
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -10,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
  */
 @Composable
 @NonRestartableComposable
+@ExperimentalComposeUiApi
 fun TabSelector(
     modifier: Modifier = Modifier,
     state: TabSelectorState,
@@ -63,9 +64,6 @@ fun TabSelector(
     state.InitState()
     SingleChoiceSegmentedButtonRow(
         modifier = modifier
-            .padding(
-                top = 0.dp
-            ),
     ) {
         tabs.forEachIndexed { index, tab ->
             Tab(
