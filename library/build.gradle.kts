@@ -54,6 +54,7 @@ kotlin {
                 implementation(libs.equinox.backend)
                 implementation(libs.equinox.core)
                 implementation(libs.kermit)
+                implementation(libs.kmpalette.core)
             }
         }
         val jvmMain by getting {

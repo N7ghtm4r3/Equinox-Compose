@@ -12,6 +12,7 @@ android-minSdk = "24"
 android-compileSdk = "34"
 lifecycleViewmodelCompose = "2.8.2"
 startupRuntime = "1.2.0"
+kmpalette = "3.1.0"
 
 [libraries]
 apimanager = { module = "com.github.N7ghtm4r3:APIManager", version.ref = "apimanager" }
@@ -25,6 +26,7 @@ json = { module = "org.json:json", version.ref = "json" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
+kmpalette-core = { module = "com.kmpalette:kmpalette-core", version.ref = "kmpalette" }
 
 [plugins]
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
