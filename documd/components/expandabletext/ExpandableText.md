@@ -1,6 +1,6 @@
-# TextDivider
+# ExpandableText
 
-Is a component useful to divide sections with a representative text
+Component to dynamically display a long text initially collapsed
 
 ## Usage
 
@@ -9,17 +9,21 @@ class TestScreen : EquinoxScreen<EquinoxViewModel>() {
     
     @Composable
     override fun ArrangeScreenContent() {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            // create the components with the default settings
-            TextDivider(
-                text = "Option 1" // your text
+        val longText = "..."
+        ExpandableText(
+            containerModifier = Modifier
+                .widthIn(
+                    max = 750.dp
+                ),
+            textModifier = Modifier
+                .padding(
+                    horizontal = 16.dp
+                ),
+            text = longText,
+            textStyle = TextStyle(
+                textAlign = TextAlign.Justify,
             )
-        }
+        )
     }
 
 }
@@ -29,11 +33,11 @@ class TestScreen : EquinoxScreen<EquinoxViewModel>() {
 
 ### Android
 
-<img src="textdivider-android.png" width="350" height="700" alt="textdivider-android"/>
+[expandabletext-android](https://github.com/user-attachments/assets/f99e8345-cb07-4c3c-a227-186f11840990)
 
 ### Desktop
-    
-<img src="textdivider-desktop.png" alt="textdivider-desktop">
+
+[expandabletext-desktop](https://github.com/user-attachments/assets/38d55a37-3ee0-4610-ac76-bfb661fa1779)
 
 ## Authors
 

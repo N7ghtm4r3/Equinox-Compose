@@ -133,6 +133,7 @@ The other apis will be gradually released
 - [WriteableText](documd%2Fcomponents%2Fwriteabletext%2FWriteableText.md)
 - [Tile](documd%2Fcomponents%2Ftile%2FTile.md)
 - [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
+- [ExpandableText](documd%2Fcomponents%2Fexpandabletext%2FExpandableText.md)
 
 The others components will be gradually released
 
@@ -164,10 +165,11 @@ Thank you for your help!
 
 If you want support project and developer
 
-| Crypto                                                                                              | Address                                        | Network  |
-|-----------------------------------------------------------------------------------------------------|------------------------------------------------|----------|
-| ![](https://img.shields.io/badge/Bitcoin-000000?style=for-the-badge&logo=bitcoin&logoColor=white)   | **3H3jyCzcRmnxroHthuXh22GXXSmizin2yp**         | Bitcoin  |
-| ![](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white) | **0x1b45bc41efeb3ed655b078f95086f25fc83345c4** | Ethereum |
+| Crypto                                                                                              | Address                                          | Network  |
+|-----------------------------------------------------------------------------------------------------|--------------------------------------------------|----------|
+| ![](https://img.shields.io/badge/Bitcoin-000000?style=for-the-badge&logo=bitcoin&logoColor=white)   | **3H3jyCzcRmnxroHthuXh22GXXSmizin2yp**           | Bitcoin  |
+| ![](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white) | **0x1b45bc41efeb3ed655b078f95086f25fc83345c4**   | Ethereum |
+| ![](https://img.shields.io/badge/Solana-000?style=for-the-badge&logo=Solana&logoColor=9945FF)       | **AtPjUnxYFHw3a6Si9HinQtyPTqsdbfdKX3dJ1xiDjbrL** | Solana   |
 
 If you want support project and developer
 with <a href="https://www.paypal.com/donate/?hosted_button_id=5QMN5UQH7LDT4">PayPal</a>
