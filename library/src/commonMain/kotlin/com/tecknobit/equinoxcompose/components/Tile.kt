@@ -1,5 +1,6 @@
 package com.tecknobit.equinoxcompose.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,7 +29,9 @@ import org.jetbrains.compose.resources.stringResource
  * Tile component useful to execute action when clicked
  *
  * @param modifier The modifier to apply to the container [Card]
- * @param stroke The stroke to apply as dashed effect
+ * @param strokeWidth The stroke width to apply as dashed effect
+ * @param intervals The number of the interval from each part of the line
+ * @param phase The pixel offset for the intervals
  * @param size The size of the tile
  * @param cornerRadius The radius of the tile
  * @param containerColor The colors scheme to apply to the tile
@@ -45,10 +48,9 @@ import org.jetbrains.compose.resources.stringResource
 @NonRestartableComposable
 fun DashedTile(
     modifier: Modifier = Modifier,
-    stroke: Stroke = Stroke(
-        width = 5f,
-        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
-    ),
+    strokeWidth: Float = 5f,
+    intervals: FloatArray = floatArrayOf(10f, 10f),
+    phase: Float = 0f,
     size: Dp = 115.dp,
     cornerRadius: Dp = 15.dp,
     containerColor: Color = MaterialTheme.colorScheme.primary,
@@ -64,12 +66,75 @@ fun DashedTile(
     ),
     onClick: () -> Unit
 ) {
+    DashedTile(
+        modifier = modifier,
+        strokeWidth = strokeWidth,
+        intervals = intervals,
+        phase = phase,
+        size = size,
+        cornerRadius = cornerRadius,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        elevation = elevation,
+        icon = icon,
+        iconSize = iconSize,
+        text = stringResource(text),
+        fontWeight = fontWeight,
+        textStyle = textStyle,
+        onClick = onClick
+    )
+}
+
+/**
+ * Tile component useful to execute action when clicked
+ *
+ * @param modifier The modifier to apply to the container [Card]
+ * @param strokeWidth The stroke width to apply as dashed effect
+ * @param intervals The number of the interval from each part of the line
+ * @param phase The pixel offset for the intervals
+ * @param size The size of the tile
+ * @param cornerRadius The radius of the tile
+ * @param containerColor The colors scheme to apply to the tile
+ * @param contentColor The color of the content, icon and the text
+ * @param elevation The elevation of the tile
+ * @param icon The representative icon
+ * @param iconSize The size of the [icon]
+ * @param text The representative text
+ * @param fontWeight The weight to apply to the [text]
+ * @param textStyle The style to apply to the [text]
+ * @param onClick The action to execute when the tile has been clicked
+ */
+@Composable
+@NonRestartableComposable
+fun DashedTile(
+    modifier: Modifier = Modifier,
+    strokeWidth: Float = 5f,
+    intervals: FloatArray = floatArrayOf(10f, 10f),
+    phase: Float = 0f,
+    size: Dp = 115.dp,
+    cornerRadius: Dp = 15.dp,
+    containerColor: Color = MaterialTheme.colorScheme.primary,
+    contentColor: Color = contentColorFor(containerColor),
+    elevation: Dp = 0.dp,
+    icon: ImageVector,
+    iconSize: Dp = 65.dp,
+    text: String,
+    fontWeight: FontWeight = FontWeight.Bold,
+    textStyle: TextStyle = TextStyle.Default.merge(
+        color = contentColor,
+        fontWeight = fontWeight
+    ),
+    onClick: () -> Unit
+) {
     Tile(
         modifier = modifier
             .drawBehind {
                 drawRoundRect(
                     color = containerColor,
-                    style = stroke,
+                    style = Stroke(
+                        width = strokeWidth,
+                        pathEffect = PathEffect.dashPathEffect(intervals, phase)
+                    ),
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
             },
@@ -194,9 +259,10 @@ fun Tile(
         ) {
             Icon(
                 modifier = Modifier
-                    .size(iconSize),
+                    .size(iconSize)
+                    .background(Color.Transparent),
                 imageVector = icon,
-                contentDescription = null,
+                contentDescription = text,
                 tint = contentColor
             )
             Text(

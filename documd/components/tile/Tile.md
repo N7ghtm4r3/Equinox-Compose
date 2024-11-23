@@ -4,6 +4,8 @@ Tile component useful to execute action when clicked
 
 ## Usage
 
+### Classic Tile
+
 ```kotlin
 class TestScreen : EquinoxScreen<EquinoxViewModel>() {
     
@@ -33,11 +35,47 @@ class TestScreen : EquinoxScreen<EquinoxViewModel>() {
 
 ### Android
 
-<img src="tile-android.png" width="350" height="700" alt="tile-android"/>
+<img src="classic_tile-android.png" width="350" height="700" alt="classic-tile-android"/>
 
 ### Desktop
     
-<img src="tile-desktop.png" alt="tile-desktop">
+<img src="classic_tile-desktop.png" alt="classic_tile-desktop">
+
+### Dashed Tile
+
+```kotlin
+class TestScreen : EquinoxScreen<EquinoxViewModel>() {
+    
+    @Composable
+    override fun ArrangeScreenContent() {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            DashedTile(
+                icon = Icons.Default.Settings, // representative icon
+                text = "Settings", // representative text
+                onClick = {
+                    // your action
+                }
+            )
+        }
+    }
+
+}
+```
+
+## Appearance
+
+### Android
+
+<img src="dashed_tile-android.png" width="350" height="700" alt="dashed-tile-android"/>
+
+### Desktop
+
+<img src="dashed_tile-desktop.png" alt="dashed-tile-desktop">
 
 ## Authors
 
@@ -67,10 +105,11 @@ Thank you for your help!
 
 If you want support project and developer
 
-| Crypto                                                                                              | Address                                        | Network  |
-|-----------------------------------------------------------------------------------------------------|------------------------------------------------|----------|
-| ![](https://img.shields.io/badge/Bitcoin-000000?style=for-the-badge&logo=bitcoin&logoColor=white)   | **3H3jyCzcRmnxroHthuXh22GXXSmizin2yp**         | Bitcoin  |
-| ![](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white) | **0x1b45bc41efeb3ed655b078f95086f25fc83345c4** | Ethereum |
+| Crypto                                                                                              | Address                                          | Network  |
+|-----------------------------------------------------------------------------------------------------|--------------------------------------------------|----------|
+| ![](https://img.shields.io/badge/Bitcoin-000000?style=for-the-badge&logo=bitcoin&logoColor=white)   | **3H3jyCzcRmnxroHthuXh22GXXSmizin2yp**           | Bitcoin  |
+| ![](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white) | **0x1b45bc41efeb3ed655b078f95086f25fc83345c4**   | Ethereum |
+| ![](https://img.shields.io/badge/Solana-000?style=for-the-badge&logo=Solana&logoColor=9945FF)       | **AtPjUnxYFHw3a6Si9HinQtyPTqsdbfdKX3dJ1xiDjbrL** | Solana   |
 
 If you want support project and developer
 with <a href="https://www.paypal.com/donate/?hosted_button_id=5QMN5UQH7LDT4">PayPal</a>
