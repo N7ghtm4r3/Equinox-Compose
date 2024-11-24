@@ -2,19 +2,20 @@ package com.tecknobit.equinoxcompose.helpers.viewmodels
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.MutableState
-import com.tecknobit.equinox.environment.helpers.EquinoxRequester
-import com.tecknobit.equinox.environment.records.EquinoxLocalUser
-import com.tecknobit.equinox.environment.records.EquinoxUser.ApplicationTheme
-import com.tecknobit.equinox.environment.records.EquinoxUser.PROFILE_PIC_KEY
-import com.tecknobit.equinox.inputs.InputValidator.isEmailValid
-import com.tecknobit.equinox.inputs.InputValidator.isPasswordValid
+import com.tecknobit.equinoxbackend.Requester.Companion.sendRequest
+import com.tecknobit.equinoxbackend.environment.helpers.EquinoxRequester
+import com.tecknobit.equinoxbackend.environment.models.EquinoxLocalUser
+import com.tecknobit.equinoxbackend.environment.models.EquinoxUser.ApplicationTheme
+import com.tecknobit.equinoxbackend.environment.models.EquinoxUser.PROFILE_PIC_KEY
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
 import java.io.File
 
 /**
  * The **EquinoxProfileViewModel** class is the support class used to change the user account settings or preferences
  *
- * @param snackbarHostState: the host to launch the snackbar messages
- * @param requester: the instance to manage the requests with the backend
+ * @param snackbarHostState The host to launch the snackbar messages
+ * @param requester The instance to manage the requests with the backend
  * @param localUser:  the user of the current logged-in session, used to make the requests to the backend
  *
  * @author N7ghtm4r3 - Tecknobit
@@ -53,8 +54,8 @@ open class EquinoxProfileViewModel(
     /**
      * Function to execute the profile pic change
      *
-     * @param imagePath: the path of the image to set
-     * @param profilePic: the state used to display the current profile pic
+     * @param imagePath The path of the image to set
+     * @param profilePic The state used to display the current profile pic
      */
     fun changeProfilePic(
         imagePath: String,
@@ -62,7 +63,7 @@ open class EquinoxProfileViewModel(
     ) {
         requester.sendRequest(
             request = {
-                requester.changeProfilePic(
+                changeProfilePic(
                     profilePic = File(imagePath)
                 )
             },
@@ -77,7 +78,7 @@ open class EquinoxProfileViewModel(
     /**
      * Function to execute the email change
      *
-     * @param onSuccess: the action to execute if the request has been successful
+     * @param onSuccess The action to execute if the request has been successful
      */
     fun changeEmail(
         onSuccess: () -> Unit
@@ -85,7 +86,7 @@ open class EquinoxProfileViewModel(
         if (isEmailValid(newEmail.value)) {
             requester.sendRequest(
                 request = {
-                    requester.changeEmail(
+                    changeEmail(
                         newEmail = newEmail.value
                     )
                 },
@@ -102,7 +103,7 @@ open class EquinoxProfileViewModel(
     /**
      * Function to execute the password change
      *
-     * @param onSuccess: the action to execute if the request has been successful
+     * @param onSuccess The action to execute if the request has been successful
      */
     fun changePassword(
         onSuccess: () -> Unit
@@ -110,7 +111,7 @@ open class EquinoxProfileViewModel(
         if (isPasswordValid(newPassword.value)) {
             requester.sendRequest(
                 request = {
-                    requester.changePassword(
+                    changePassword(
                         newPassword = newPassword.value
                     )
                 },
@@ -124,8 +125,8 @@ open class EquinoxProfileViewModel(
     /**
      * Function to execute the language change
      *
-     * @param newLanguage: the new language of the user
-     * @param onSuccess: the action to execute if the request has been successful
+     * @param newLanguage The new language of the user
+     * @param onSuccess The action to execute if the request has been successful
      */
     fun changeLanguage(
         newLanguage: String,
@@ -133,7 +134,7 @@ open class EquinoxProfileViewModel(
     ) {
         requester.sendRequest(
             request = {
-                requester.changeLanguage(
+                changeLanguage(
                     newLanguage = newLanguage
                 )
             },
@@ -148,8 +149,8 @@ open class EquinoxProfileViewModel(
     /**
      * Function to execute the theme change
      *
-     * @param newTheme: the new theme of the user
-     * @param onChange: the action to execute when the theme changed
+     * @param newTheme The new theme of the user
+     * @param onChange The action to execute when the theme changed
      */
     fun changeTheme(
         newTheme: ApplicationTheme,
@@ -162,7 +163,7 @@ open class EquinoxProfileViewModel(
     /**
      * Function to execute the account deletion
      *
-     * @param onDelete: the action to execute when the account has been deleted
+     * @param onDelete The action to execute when the account has been deleted
      */
     fun deleteAccount(
         onDelete: () -> Unit
@@ -181,12 +182,16 @@ open class EquinoxProfileViewModel(
     /**
      * Method to clear the current [localUser] session
      *
-     * @param onClear: the action to execute when the session has been cleaned
+     * @param onClear The action to execute when the session has been cleaned
      */
     fun clearSession(
         onClear: () -> Unit
     ) {
         localUser.clear()
+        requester.setUserCredentials(
+            userId = null,
+            userToken = null
+        )
         onClear.invoke()
     }
 

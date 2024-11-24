@@ -5,4 +5,5 @@
     <string name="dismiss">Afslå</string>
     <string name="server_currently_offline">Serveren er i øjeblikket offline</string>
     <string name="no_internet_connection">Ingen internetforbindelse</string>
+    <string name="loading_data">Indlæser data...</string>
 </resources>

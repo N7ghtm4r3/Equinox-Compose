@@ -30,14 +30,20 @@ private val defaultOnValueChange: (
     String) -> Unit = { validator, isError, value, mustBeInLowerCase, allowsBlankSpaces, it ->
     if (validator != null)
         isError.value = value.value.isNotEmpty() && !validator.invoke(it)
-    value.value = if (mustBeInLowerCase)
-        it.lowercase()
-    else
-        it
-    value.value = if(allowsBlankSpaces)
-        it
-    else
-        it.replace(" ", "")
+    val processedValue = it
+        .let {
+            if (mustBeInLowerCase)
+                it.lowercase()
+            else
+                it
+        }
+        .let {
+            if(allowsBlankSpaces)
+                it
+            else
+                it.replace(" ", "")
+        }
+    value.value = processedValue
 }
 
 /**

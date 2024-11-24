@@ -43,10 +43,10 @@ private lateinit var focusManager: FocusManager
 /**
  * Informative text about what the [SplitText] needs
  *
- * @param text: the informative text
- * @param textStyle: the style to apply to the [text]
- * @param fontSize: the size of the [text]
- * @param color: the color of the [text]
+ * @param text The informative text
+ * @param textStyle The style to apply to the [text]
+ * @param fontSize The size of the [text]
+ * @param color The color of the [text]
  */
 data class InfoText(
     val text: String,
@@ -58,13 +58,13 @@ data class InfoText(
 /**
  * Component to allow the user to insert a split text such OTP codes, PIN or any other texts of this type
  *
- * @param columnModifier: the modifier to apply to the [Column] container
- * @param rowModifier: the modifier to apply to the [LazyRow] container
- * @param splitsTextState: the state used to manage this component
- * @param spacingBetweenBoxes: the spacing between the boxes
- * @param boxShape: the shape to apply to the [SplitBox]
- * @param boxTextStyle: the text style to use for the [SplitBox]'s text
- * @param infoText: the informative text about what the component needs
+ * @param columnModifier The modifier to apply to the [Column] container
+ * @param rowModifier The modifier to apply to the [LazyRow] container
+ * @param splitsTextState The state used to manage this component
+ * @param spacingBetweenBoxes The spacing between the boxes
+ * @param boxShape The shape to apply to the [SplitBox]
+ * @param boxTextStyle The text style to use for the [SplitBox]'s text
+ * @param infoText The informative text about what the component needs
  */
 @Composable
 @NonRestartableComposable
@@ -120,12 +120,12 @@ fun SplitText(
 /**
  * Single component to allow the user to a slice of the complete text of the [SplitText] component
  *
- * @param currentTextSlices: the array container of each parts of the split text
- * @param boxSelectedColor: the color to use when the box is currently selected
- * @param boxShape: the shape to apply to the [SplitBox]
- * @param boxTextStyle: the text style to use for the [SplitBox]'s text
- * @param textSlice: the slice of the complete text to fill
- * @param currentBox: the index of the current box where the focus is applied
+ * @param currentTextSlices The array container of each parts of the split text
+ * @param boxSelectedColor The color to use when the box is currently selected
+ * @param boxShape The shape to apply to the [SplitBox]
+ * @param boxTextStyle The text style to use for the [SplitBox]'s text
+ * @param textSlice The slice of the complete text to fill
+ * @param currentBox The index of the current box where the focus is applied
  */
 @Composable
 @NonRestartableComposable
@@ -225,9 +225,9 @@ private fun SplitBox(
 /**
  * Function to automatically all the [SplitBox] when the user copy the text to insert in the [SplitText]
  *
- * @param splits: the number of splits used to create the [SplitText] component
- * @param currentTextSlices: the array container of the parts of the split text
- * @param slice: the complete text requested to copy in the component
+ * @param splits The number of splits used to create the [SplitText] component
+ * @param currentTextSlices The array container of the parts of the split text
+ * @param slice The complete text requested to copy in the component
  */
 private fun pasteSlices(
     splits: Int,

@@ -5,4 +5,5 @@
     <string name="dismiss">Annulla</string>
     <string name="server_currently_offline">Il server è attualmente offline</string>
     <string name="no_internet_connection">Nessuna connessione a Internet</string>
+    <string name="loading_data">Caricamento dati...</string>
 </resources>

@@ -45,7 +45,7 @@
                     </a>
             </div>
             <div class="library-version">
-1.0.2            </div>
+1.0.3            </div>
         </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector common-like" data-active="" data-filter=":library:dokkaHtml/commonMain">common</button>
@@ -256,21 +256,6 @@
               </div>
             </div>
           </div>
-<a data-name="448840478%2FProperties%2F1327329691" anchor-label="refreshRoutine" id="448840478%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
-          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="../-equinox-view-model/refresh-routine.html"><span>refresh</span><wbr></wbr><span><span>Routine</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="448840478%2FProperties%2F1327329691"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">private </span><span class="token keyword">val </span><a href="../-equinox-view-model/refresh-routine.html">refreshRoutine</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/CoroutineScope///PointingToDeclaration/">CoroutineScope</span></div><div class="brief "><p class="paragraph"><strong>refreshRoutine</strong> -> the coroutine used to execute the refresh routines</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
 <a data-name="126944543%2FProperties%2F1327329691" anchor-label="requester" id="126944543%2FProperties%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
           <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
             <div class="main-subrow keyValue ">
@@ -405,7 +390,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/can-refresher-start.html"><span class="token function">canRefresherStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Function to get whether the <a href="../-equinox-view-model/refresh-routine.html">refreshRoutine</a> can start, so if there aren't other jobs that routine is already executing</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/can-refresher-start.html"><span class="token function">canRefresherStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Function to get whether the <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/package-summary.html">viewModelScope</a> can start, so if there aren't other jobs that routine is already executing</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -420,7 +405,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/continue-to-fetch.html"><span class="token function">continueToFetch</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">currentContext<span class="token operator">: </span><span data-unresolved-link="/&amp;lt;Error class: unknown class&amp;gt;///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><span class="token keyword">out </span><span data-unresolved-link="/&amp;lt;Error class: unknown class&amp;gt;///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Function to suspend the current <a href="../-equinox-view-model/refresh-routine.html">refreshRoutine</a> to execute other requests to the backend, the isRefreshing instance will be set as <strong>false</strong> to allow the restart of the routine after executing the other requests</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/continue-to-fetch.html"><span class="token function">continueToFetch</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">currentContext<span class="token operator">: </span><span data-unresolved-link="/&amp;lt;Error class: unknown class&amp;gt;///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><span class="token keyword">out </span><span data-unresolved-link="/&amp;lt;Error class: unknown class&amp;gt;///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Function to suspend the current <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/package-summary.html">viewModelScope</a> to execute other requests to the backend, the isRefreshing instance will be set as <strong>false</strong> to allow the restart of the routine after executing the other requests</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -495,7 +480,22 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">private </span><span class="token keyword">fun </span><a href="get-user-language.html"><span class="token function">getUserLanguage</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Function to get the current user language</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">protected </span><span class="token keyword">fun </span><a href="get-user-language.html"><span class="token function">getUserLanguage</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Function to get the current user language</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-637129194%2FFunctions%2F1327329691" anchor-label="getValidUserLanguage" id="-637129194%2FFunctions%2F1327329691" data-filterable-set=":library:dokkaHtml/commonMain"></a>
+          <div class="table-row" data-filterable-current=":library:dokkaHtml/commonMain" data-filterable-set=":library:dokkaHtml/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-valid-user-language.html"><span>get</span><wbr></wbr><span>Valid</span><wbr></wbr><span>User</span><wbr></wbr><span><span>Language</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-637129194%2FFunctions%2F1327329691"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">private </span><span class="token keyword">fun </span><a href="get-valid-user-language.html"><span class="token function">getValidUserLanguage</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Method to get a supported language for the user</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -540,7 +540,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/restart-refresher.html"><span class="token function">restartRefresher</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function to restart the current <a href="../-equinox-view-model/refresh-routine.html">refreshRoutine</a> after other requests has been executed, the isRefreshing instance will be set as <strong>true</strong> to deny the restart of the routine after executing the other requests</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/restart-refresher.html"><span class="token function">restartRefresher</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function to restart the current <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/package-summary.html">viewModelScope</a> after other requests has been executed, the isRefreshing instance will be set as <strong>true</strong> to deny the restart of the routine after executing the other requests</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -555,7 +555,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">protected </span><span class="token keyword">fun </span><a href="../-equinox-view-model/show-snackbar-message.html"><span class="token function">showSnackbarMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">helper<span class="token operator">: </span><span data-unresolved-link="/&amp;lt;Error class: unknown class&amp;gt;///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">protected </span><span class="token keyword">fun </span><a href="../-equinox-view-model/show-snackbar-message.html"><span class="token function">showSnackbarMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function to display a response message with a snackbar</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-equinox-view-model/show-snackbar-message.html"><span class="token function">showSnackbarMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">helper<span class="token operator">: </span><span data-unresolved-link="/&amp;lt;Error class: unknown class&amp;gt;///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-equinox-view-model/show-snackbar-message.html"><span class="token function">showSnackbarMessage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function to display a response message with a snackbar</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -630,7 +630,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/suspend-refresher.html"><span class="token function">suspendRefresher</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function to suspend the current <a href="../-equinox-view-model/refresh-routine.html">refreshRoutine</a> to execute other requests to the backend, the isRefreshing instance will be set as <strong>false</strong> to allow the restart of the routine after executing the other requests</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":library:dokkaHtml/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-equinox-view-model/suspend-refresher.html"><span class="token function">suspendRefresher</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Function to suspend the current <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/package-summary.html">viewModelScope</a> to execute other requests to the backend, the isRefreshing instance will be set as <strong>false</strong> to allow the restart of the routine after executing the other requests</p></div></div></div>
                 </div>
               </div>
             </div>
