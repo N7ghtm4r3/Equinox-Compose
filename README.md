@@ -1,7 +1,8 @@
 # Equinox-Compose
 
-## This library will be integrated as module in the [Equinox](https://github.com/N7ghtm4r3/Equinox) library in the next 
-version  
+![Maven Central](https://img.shields.io/maven-central/v/io.github.n7ghtm4r3/Equinox-Compose.svg?label=Maven%20Central)
+
+## This library will be integrated as module in the [Equinox](https://github.com/N7ghtm4r3/Equinox) library in the next version  
 
 **v1.0.3**
 
