@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.text.Paragraph
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -22,14 +23,63 @@ import com.tecknobit.equinoxcompose.utilities.toColor
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * *RED_PERCEPTION* -> the ratio of the red perception from the color spectrum
+ */
 private const val RED_PERCEPTION = 0.299
 
+/**
+ * *GREEN_PERCEPTION* -> the ratio of the green perception from the color spectrum
+ */
 private const val GREEN_PERCEPTION = 0.587
 
+/**
+ * *BLUE_PERCEPTION* -> the ratio of the blue perception from the color spectrum
+ */
 private const val BLUE_PERCEPTION = 0.114
 
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ *
+ * The dominant color from the [backgroundPainter] is fetched with the usage under the hood by the
+ * [kmpalette](https://github.com/jordond/kmpalette) library, it is marked as [ExperimentalComposeApi] due an
+ * [issue](https://github.com/jordond/kmpalette/issues/197) during its implementation
+ *
+ * @param text the resource identifier of the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param backgroundPainter The painter used as background for a text
+ */
 @Composable
 @NonRestartableComposable
+@ExperimentalComposeApi
 fun ChameleonText(
     text: StringResource,
     modifier: Modifier = Modifier,
@@ -70,9 +120,48 @@ fun ChameleonText(
     )
 }
 
-// TODO: WARN ABOUT KMPALETTE LIBRARY INTEGRATION
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ *
+ * The dominant color from the [backgroundPainter] is fetched with the usage under the hood by the
+ * [kmpalette](https://github.com/jordond/kmpalette) library, it is marked as [ExperimentalComposeApi] due an
+ * [issue](https://github.com/jordond/kmpalette/issues/197) during its implementation
+ *
+ * @param text the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param backgroundPainter The painter used as background for a text
+ */
 @Composable
 @NonRestartableComposable
+@ExperimentalComposeApi
 fun ChameleonText(
     text: String,
     modifier: Modifier = Modifier,
@@ -120,6 +209,44 @@ fun ChameleonText(
     )
 }
 
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ *
+ * The dominant color from the [backgroundImage] is fetched with the usage under the hood by the
+ * [kmpalette](https://github.com/jordond/kmpalette) library
+ *
+ * @param text the resource identifier of the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param backgroundImage The image used as background for a text
+ */
 @Composable
 @NonRestartableComposable
 fun ChameleonText(
@@ -162,7 +289,44 @@ fun ChameleonText(
     )
 }
 
-// TODO: WARN ABOUT KMPALETTE LIBRARY INTEGRATION
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ *
+ * The dominant color from the [backgroundImage] is fetched with the usage under the hood by the
+ * [kmpalette](https://github.com/jordond/kmpalette) library
+ *
+ * @param text the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param backgroundImage The image used as background for a text
+ */
 @Composable
 @NonRestartableComposable
 fun ChameleonText(
@@ -214,6 +378,40 @@ fun ChameleonText(
     }
 }
 
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ * @param text the resource identifier of the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param hexBackgroundColor The background color, in the hexadecimal format, where the text is displayed
+ */
 @Composable
 @NonRestartableComposable
 fun ChameleonText(
@@ -256,6 +454,40 @@ fun ChameleonText(
     )
 }
 
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ * @param text the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param hexBackgroundColor The background color, in the hexadecimal format, where the text is displayed
+ */
 @Composable
 @NonRestartableComposable
 fun ChameleonText(
@@ -298,6 +530,40 @@ fun ChameleonText(
     )
 }
 
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ * @param text the resource identifier of the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param backgroundColor The background color where the text is displayed
+ */
 @Composable
 @NonRestartableComposable
 fun ChameleonText(
@@ -340,6 +606,40 @@ fun ChameleonText(
     )
 }
 
+/**
+ * Customization of the [Text] component to change the color of the [text] displayed dynamically based on the background
+ * color where the text is
+ * @param text the text to be displayed
+ * @param modifier the [Modifier] to be applied to this layout node
+ * @param fontSize the size of glyphs to use when painting the text. See [TextStyle.fontSize].
+ * @param fontStyle the typeface variant to use when drawing the letters (e.g., italic). See
+ *   [TextStyle.fontStyle].
+ * @param fontWeight the typeface thickness to use when painting the text (e.g., [FontWeight.Bold]).
+ * @param fontFamily the font family to be used when rendering the text. See [TextStyle.fontFamily].
+ * @param letterSpacing the amount of space to add between each letter. See
+ *   [TextStyle.letterSpacing].
+ * @param textDecoration the decorations to paint on the text (e.g., an underline). See
+ *   [TextStyle.textDecoration].
+ * @param textAlign the alignment of the text within the lines of the paragraph. See
+ *   [TextStyle.textAlign].
+ * @param lineHeight line height for the [Paragraph] in [TextUnit] unit, e.g. SP or EM. See
+ *   [TextStyle.lineHeight].
+ * @param overflow how visual overflow should be handled.
+ * @param softWrap whether the text should break at soft line breaks. If false, the glyphs in the
+ *   text will be positioned as if there was unlimited horizontal space. If [softWrap] is false,
+ *   [overflow] and TextAlign may have unexpected effects.
+ * @param maxLines An optional maximum number of lines for the text to span, wrapping if necessary.
+ *   If the text exceeds the given number of lines, it will be truncated according to [overflow] and
+ *   [softWrap]. It is required that 1 <= [minLines] <= [maxLines].
+ * @param minLines The minimum height in terms of minimum number of visible lines. It is required
+ *   that 1 <= [minLines] <= [maxLines].
+ * @param onTextLayout callback that is executed when a new text layout is calculated. A
+ *   [TextLayoutResult] object that callback provides contains paragraph information, size of the
+ *   text, baselines and other details. The callback can be used to add additional decoration or
+ *   functionality to the text. For example, to draw selection around the text.
+ * @param style style configuration for the text such as color, font, line height etc.
+ * @param backgroundColor The background color where the text is displayed
+ */
 @Composable
 @NonRestartableComposable
 fun ChameleonText(
@@ -384,6 +684,13 @@ fun ChameleonText(
     )
 }
 
+/**
+ * Method to get the color to use on a specified [backgroundColor] based on its luminance
+ *
+ * @param backgroundColor The background color where the text is on top
+ *
+ * @return the correct color based on the background luminance as [Color]
+ */
 private fun getContrastingColor(
     backgroundColor: Color
 ): Color {

@@ -1,5 +1,8 @@
 # Equinox-Compose
 
+## This library will be integrated as module in the [Equinox](https://github.com/N7ghtm4r3/Equinox) library in the next 
+version  
+
 **v1.0.3**
 
 Utilities for clients with an architecture based on SpringBoot and Jetpack Compose frameworks. Is a support library
@@ -135,6 +138,7 @@ The other apis will be gradually released
 - [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
 - [ExpandableText](documd%2Fcomponents%2Fexpandabletext%2FExpandableText.md)
 - [TabSelector](documd%2Fcomponents%2Ftabselector%2FTabSelector.md)
+- [ChameleonText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FChameleonText.kt)
 
 The others components will be gradually released
 
