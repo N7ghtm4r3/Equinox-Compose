@@ -139,7 +139,7 @@ The other apis will be gradually released
 - [SplitText](documd%2Fcomponents%2Fsplittext%2FSplitText.md)
 - [ExpandableText](documd%2Fcomponents%2Fexpandabletext%2FExpandableText.md)
 - [TabSelector](documd%2Fcomponents%2Ftabselector%2FTabSelector.md)
-- [ChameleonText](library%2Fsrc%2FcommonMain%2Fkotlin%2Fcom%2Ftecknobit%2Fequinoxcompose%2Fcomponents%2FChameleonText.kt)
+- [ChameleonText](documd%2Fcomponents%2Fchameleontext%2FChameleonText.md)
 
 The others components will be gradually released
 
